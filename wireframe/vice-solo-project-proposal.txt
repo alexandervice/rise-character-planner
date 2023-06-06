@@ -10,4 +10,4 @@ Project Description: I have previously designed rules and a database for a table
 
 MVP Features: login and registration, users are able to create character concepts and navigate to a page with all their concepts and view the details for each concept, users can access the database that I have already made for the game to save and favorite various character elements to the character they are working on. Users can remove saved elements and even delete their character concepts.
 
-Bonus Features: security and login validations, image uploading, deployment, hit chatgpt API to write up character backstories or other ideas for character concepts, notes, sharing
+Bonus Features: security and login validations, image uploading, deployment, hit chatgpt API to write up character backstories or other ideas for character concepts, search function
