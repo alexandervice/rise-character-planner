@@ -1,0 +1,13 @@
+Name: Alexander (Alex) Vice
+
+Stack: MERN
+
+GitHub Repo: https://github.com/alexandervice/rise-character-planner/tree/main
+
+Project Name: Rise Character Planner
+
+Project Description: I have previously designed rules and a database for a tabletop roleplaying game, and I want to design a website that will allow a user to create character concepts, upload or browse pictures, select a race, and various powers and abilities. It is not a full on character sheet, but more of a place for users to make a collage of character ideas.
+
+MVP Features: login and registration, users are able to create character concepts and navigate to a page with all their concepts and view the details for each concept, users can access the database that I have already made for the game to save and favorite various character elements to the character they are working on. Users can remove saved elements and even delete their character concepts.
+
+Bonus Features: security and login validations, image uploading, deployment, hit chatgpt API to write up character backstories or other ideas for character concepts, notes, sharing
