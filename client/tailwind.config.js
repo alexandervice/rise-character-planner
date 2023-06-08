@@ -5,6 +5,7 @@ module.exports = {
     "./src/views/*.{js,jsx}",
     "./src/*.{js,jsx,html}"
   ],
+  darkMode: "class",
   theme: {
     extend: {},
   },
