@@ -2,8 +2,9 @@ import React, { useState } from 'react';
 import axios from "axios";
 import {useNavigate} from "react-router-dom";
 
-const LoginRegisterForm = () => {
+const RegistrationForm = () => {
   const navigate = useNavigate();
+  const [errors, setErrors] = useState([]);
 
   const [userInfo, setUserInfo] = useState({
     userName: "",
@@ -33,6 +34,7 @@ const LoginRegisterForm = () => {
     <div>
       <div className="row">
         <form action="" className="col-med-4 offset-2" onSubmit={submitHandler}>
+        <h2>Registration Form</h2>
           <div className="form-group">
             <label htmlFor="userName">Username</label>
             <input type="text" className="form-input mb-5 ml-2 py-0 px-1" name="userName" id="userName" placeholder="Username" onChange={changeHandler}/>
@@ -49,11 +51,11 @@ const LoginRegisterForm = () => {
             <label htmlFor="confirmPassword">Confirm Password</label>
             <input type="password" className="form-input mb-5 ml-2 py-0 px-1" name="confirmPassword" id="confirmPassword" placeholder="Confirm Password" onChange={changeHandler}/>
           </div>
-          <button type="submit" className="bg-green-200 hover:bg-green-300 rounded px-1 border-solid border-2 border-green-400">Register</button>
+          <button type="submit" className="bg-green-200 hover:bg-green-300 rounded px-1 border-solid border-2 border-green-400  dark:bg-green-800 dark:hover:bg-green-700">Register</button>
         </form>
       </div>
     </div>
   )
 }
 
-export default LoginRegisterForm
+export default RegistrationForm
