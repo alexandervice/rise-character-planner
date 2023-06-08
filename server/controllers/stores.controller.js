@@ -1,4 +1,4 @@
-const Store = require("../models/stores.model");
+const Store = require("../models/character.model");
 
 
 module.exports = {

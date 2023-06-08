@@ -1,6 +1,7 @@
 const mongoose = require('mongoose');
 const bcrypt = require("bcrypt");
 const {isEmail} = require("validator");
+const Characters = require("./character.model")
 
 const UserSchema = new mongoose.Schema({
   userName: {
@@ -18,6 +19,10 @@ const UserSchema = new mongoose.Schema({
     type: String,
     required: [true, "Password is required"],
     min: [6, "Password must be at least 6 characters"]
+  },
+  characters: {
+    type: [Characters],
+    default: []
   }
 }, {timestamps: true});
 
@@ -43,6 +48,6 @@ UserSchema.pre('save', function (next) {
       });
 });
 
-const User = mongoose.model('User', UserSchema);
+const Users = mongoose.model('Users', UserSchema);
 
-module.exports = User;
+module.exports = Users;
