@@ -1,6 +1,6 @@
 import React from 'react';
 import {Link} from "react-router-dom";
-import DeleteButton from './DeleteButton';
+import DeleteButton from './DeleteCharacterButton';
 
 const CharacterList = (props) => {
   const {characterArray, deleteCharacter} = props;

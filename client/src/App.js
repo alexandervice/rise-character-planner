@@ -6,7 +6,7 @@ import CreateCharacter from './components/CreateCharacter';
 import UpdateCharacter from './components/UpdateCharacter';
 import './App.css';
 import './index.css';
-import LoginRegisterForm from './components/loginRegisterForm';
+import LoginRegisterForm from "./components/LoginRegisterForm"
 
 
 
