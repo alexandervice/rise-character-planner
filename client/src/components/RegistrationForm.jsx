@@ -33,8 +33,10 @@ const RegistrationForm = () => {
   return (
     <div>
       <div className="row">
-        <form action="" className="col-med-4 offset-2" onSubmit={submitHandler}>
-        <h2>Registration Form</h2>
+        <form action="" className="col-med-4 offset-2 pt-5" onSubmit={submitHandler}>
+          {errors.map((err, index) => 
+          <p className='error' key={index}>{err}</p>
+          )}
           <div className="form-group">
             <label htmlFor="userName">Username</label>
             <input type="text" className="form-input mb-5 ml-2 py-0 px-1" name="userName" id="userName" placeholder="Username" onChange={changeHandler}/>

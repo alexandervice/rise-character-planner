@@ -25,14 +25,25 @@ const LoginForm = () => {
         console.log(res.data);
         navigate("/dashboard");
       })
-      .catch(err => console.log(err));
+      .catch(err => {
+        console.log(err)
+        const errorResponse = err.response.data.errors;
+        const errorArray = [];
+        for (const key of Object.keys(errorResponse)) {
+          errorArray.push(errorResponse[key].message)
+        }
+        setErrors(errorArray)
+        console.log(errors)
+      });
   }
 
   return (
     <div>
       <div className="row">
-        <form action="" className="col-med-4 offset-2" onSubmit={submitHandler}>
-          <h2>Login Form</h2>
+        <form action="" className="col-med-4 offset-2 pt-5" onSubmit={submitHandler}>
+          {errors.map((err, index) => 
+          <p className='error' key={index}>{err}</p>
+          )}
           <div className="form-group">
             <label htmlFor="email">Email Address</label>
             <input type="email" className="form-input mb-5 ml-2 py-0 px-1" name="email" id="loginEmail" placeholder="Email Address" onChange={changeHandler}/>

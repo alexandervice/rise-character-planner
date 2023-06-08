@@ -12,7 +12,7 @@ import Switcher from './components/ThemeSwitcher';
 
 function App() {
   return (
-    <div className="">
+    <div className="bg-white dark:bg-gray-800 text-black dark:text-white .h-screen">
       <div className="App">
         <h1 className='text-3xl font-bold mb-5'>RISE Character Planner</h1>
         <Switcher/>
