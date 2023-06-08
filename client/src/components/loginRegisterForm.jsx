@@ -35,21 +35,21 @@ const LoginRegisterForm = () => {
         <form action="" className="col-med-4 offset-2" onSubmit={submitHandler}>
           <div className="form-group">
             <label htmlFor="userName">Username</label>
-            <input type="text" className="form-control" name="userName" id="userName" placeholder="Username" onChange={changeHandler}/>
+            <input type="text" className="form-input mb-5 ml-2 py-0 px-1" name="userName" id="userName" placeholder="Username" onChange={changeHandler}/>
           </div>
           <div className="form-group">
             <label htmlFor="email">Email Address</label>
-            <input type="email" className="form-control" name="email" id="email" placeholder="Email Address" onChange={changeHandler}/>
+            <input type="email" className="form-input mb-5 ml-2 py-0 px-1" name="email" id="email" placeholder="Email Address" onChange={changeHandler}/>
           </div>
           <div className="form-group">
             <label htmlFor="password">Password</label>
-            <input type="password" className="form-control" name="password" id="password" placeholder="Password" onChange={changeHandler}/>
+            <input type="password" className="form-input mb-5 ml-2 py-0 px-1" name="password" id="password" placeholder="Password" onChange={changeHandler}/>
           </div>
           <div className="form-group">
             <label htmlFor="confirmPassword">Confirm Password</label>
-            <input type="password" className="form-control" name="confirmPassword" id="confirmPassword" placeholder="Confirm Password" onChange={changeHandler}/>
+            <input type="password" className="form-input mb-5 ml-2 py-0 px-1" name="confirmPassword" id="confirmPassword" placeholder="Confirm Password" onChange={changeHandler}/>
           </div>
-          <button type="submit" className="btn btn-primary">Register</button>
+          <button type="submit" className="bg-green-200 hover:bg-green-300 rounded px-1 border-solid border-2 border-green-400">Register</button>
         </form>
       </div>
     </div>
