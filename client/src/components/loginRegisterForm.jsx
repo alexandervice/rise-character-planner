@@ -1,8 +1,8 @@
-import React from 'react';
+import React, { useState } from 'react';
 import axios from "axios";
 import {useNavigate} from "react-router-dom";
 
-const loginRegisterForm = () => {
+const LoginRegisterForm = () => {
   const navigate = useNavigate();
 
   const [userInfo, setUserInfo] = useState({
@@ -56,4 +56,4 @@ const loginRegisterForm = () => {
   )
 }
 
-export default loginRegisterForm
+export default LoginRegisterForm
