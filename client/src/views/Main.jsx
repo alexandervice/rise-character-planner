@@ -1,28 +1,28 @@
 import React, { useEffect, useState } from 'react'
 import axios from 'axios';
-import StoreList from '../components/StoreList';
+import CharacterList from '../components/CharacterList';
 const Main = (props) => {
-  const [storeArray, setStoreArray] = useState([]);
+  const [characterArray, setCharacterArray] = useState([]);
   useEffect(()=>{
-    axios.get("http://localhost:8000/api/stores/find/all")
+    axios.get("http://localhost:8000/api/characters/find/all")
       .then((res)=>{
-        // console.log(res.data.stores);
-        setStoreArray(res.data.stores);
+        // console.log(res.data.characters);
+        setCharacterArray(res.data.characters);
       })
       .catch(err=>console.log(err))
     // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [storeArray.length])
+  }, [characterArray.length])
 
 
-  const deleteStore = (id) => {
+  const deleteCharacter = (id) => {
     // window.location.reload(false);
-    setStoreArray(storeArray.filter(store => store.id !== id));
+    setCharacterArray(characterArray.filter(character => character.id !== id));
   }
 
   return (
     <div>
       {/* more could be added here for the main page */}
-      <StoreList storeArray={storeArray} deleteStore={deleteStore}/>
+      <CharacterList characterArray={characterArray} deleteCharacter={deleteCharacter}/>
     </div>
   )
 }
