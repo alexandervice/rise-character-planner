@@ -1,12 +1,11 @@
 import React, { useEffect, useState } from 'react'
-import axios from 'axios';
 import LoginForm from '../components/LoginForm';
 import RegistrationForm from '../components/RegistrationForm';
 
-const LoginRegistration = (props) => {
-
+const LoginRegistration = () => {
+  
   return (
-    <div>
+    <div className='p-5 bg-gray-300 dark:bg-gray-600 text-black dark:text-white'>
       <LoginForm/>
       <RegistrationForm/>
     </div>
