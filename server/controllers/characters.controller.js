@@ -137,6 +137,7 @@ module.exports = {
   }
 }
 
+// old way - when there was just one collection called characters:
 
 // module.exports = {
 //   // CREATE
