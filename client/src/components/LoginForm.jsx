@@ -19,6 +19,7 @@ const LoginForm = () => {
   }
 
   const submitHandler = (e) => {
+    console.log(userInfo)
     e.preventDefault();
     axios.post("http://localhost:8000/api/login", userInfo, {withCredentials: true})
       .then(res => {

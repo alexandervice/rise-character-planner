@@ -33,7 +33,7 @@ const CharacterList = (props) => {
         }
         </tbody>
       </table>
-      <Link className='mr-3' to={"/stores/create"}><button className='mt-5 bg-yellow-100 hover:bg-yellow-200 rounded px-1 border-solid border-2 border-yellow-400 mb-5'>Create a New Character</button></Link>
+      <Link className='mr-3' to={"/characters/create"}><button className='mt-5 bg-yellow-100 hover:bg-yellow-200 rounded px-1 border-solid border-2 border-yellow-400 mb-5'>Create a New Character</button></Link>
     </div>
   )
 }

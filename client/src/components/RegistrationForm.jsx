@@ -27,7 +27,16 @@ const RegistrationForm = () => {
         console.log(res.data);
         navigate("/dashboard");
       })
-      .catch(err => console.log(err));
+      .catch(err => {
+        console.log(err)
+        const errorResponse = err.response.data.errors;
+        const errorArray = [];
+        for (const key of Object.keys(errorResponse)) {
+          errorArray.push(errorResponse[key].message)
+        }
+        setErrors(errorArray)
+        console.log(errors)
+      });
   }
 
   return (
