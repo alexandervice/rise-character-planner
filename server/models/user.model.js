@@ -11,22 +11,30 @@ const CharacterSchema = new mongoose.Schema({
   img: {
     data: Buffer,
   },
-  races: {
-    type: Array,
-    default: []
-  },
-  backgrounds: {
-    type: Array,
-    default: []
-  },
-  specializations: {
-    type: Array,
-    default: []
-  },
-  talents: {
-    type: Array,
-    default: []
-  }
+  races: [
+    {
+      type: mongoose.Schema.Types.ObjectId,
+      ref: "Races"
+    }
+  ],
+  backgrounds: [
+    {
+      type: mongoose.Schema.Types.ObjectId,
+      ref: "Backgrounds"
+    }
+  ],
+  specializations: [
+    {
+      type: mongoose.Schema.Types.ObjectId,
+      ref: "Specializations"
+    }
+  ],
+  talents: [
+    {
+      type: mongoose.Schema.Types.ObjectId,
+      ref: "Talents"
+    }
+  ],
 }, {timestamps: true})
 
 
