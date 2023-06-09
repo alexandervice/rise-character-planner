@@ -11,11 +11,11 @@ const CharacterSchema = new mongoose.Schema({
   img: {
     data: Buffer,
   },
-  backgrounds: {
+  races: {
     type: Array,
     default: []
   },
-  races: {
+  backgrounds: {
     type: Array,
     default: []
   },

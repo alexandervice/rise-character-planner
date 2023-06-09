@@ -78,7 +78,7 @@ module.exports = {
   updateCharacter: async (req, res) => {
     try {
       const { userId, characterId } = req.params;
-      const { race, background, specialization } = req.body;
+      const { name, img, races, backgrounds, specializations, talents } = req.body;
 
       const user = await User.findById(userId);
       if (!user) {
