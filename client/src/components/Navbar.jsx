@@ -59,15 +59,15 @@ const NavBar =() => {
   }, []);
  
   return (
-    <Navbar className="mx-auto max-w-screen-xl px-6 py-3">
+    <Navbar className="mx-auto max-w-screen-xl px-6 py-3 bg-gray-300 text-black dark:bg-gray-900 dark:text-gray-200">
       <div className="flex items-center justify-between text-blue-gray-900">
         <Typography
           as="a"
           href="#"
           variant="h6"
-          className="mr-4 cursor-pointer py-1.5"
+          className="cursor-pointer py-1.5 mr-5"
         >
-          Material Tailwind
+          RISE Character Planner
         </Typography>
         <div className="hidden lg:block">
           <NavList />
@@ -85,9 +85,9 @@ const NavBar =() => {
           )}
         </IconButton>
       </div>
-      <Collapse open={openNav}>
+      {/* <Collapse open={openNav}>
         <NavList />
-      </Collapse>
+      </Collapse> */}
     </Navbar>
   );
 }
