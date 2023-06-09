@@ -1,12 +1,14 @@
 import React from "react";
 import {
   Navbar,
-  Collapse,
+  // Collapse,
   Typography,
   IconButton,
 } from "@material-tailwind/react";
 import { Bars3Icon, XMarkIcon } from "@heroicons/react/24/outline";
- 
+import LogOutButton from "./LogOutButton";
+import LogInButton from "./LogInButton";
+
 function NavList() {
   return (
     <ul className="my-2 flex flex-col gap-2 lg:mb-0 lg:mt-0 lg:flex-row lg:items-center lg:gap-6">
@@ -36,9 +38,12 @@ function NavList() {
         color="blue-gray"
         className="p-1 font-medium"
       >
-        <a href="/api/logout" className="flex items-center hover:text-blue-500 transition-colors">
+        {localStorage.getItem("usertoken") ?
+        <LogOutButton/> :
+        <LogInButton/>}
+        {/* <a href="/api/logout" className="flex items-center hover:text-blue-500 transition-colors">
           Log Out
-        </a>
+        </a> */}
       </Typography>
     </ul>
   );

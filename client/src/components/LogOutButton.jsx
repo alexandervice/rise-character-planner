@@ -1,0 +1,23 @@
+import React from 'react'
+import {useNavigate} from "react-router-dom";
+import axios from "axios";
+
+const LogOutButton = () => {
+  const navigate = useNavigate();
+
+  const logOut = e => {
+    axios.post("http://localhost:8000/api/logout")
+      .then(res => {
+        console.log(res.data);
+        navigate("/");
+      })
+      .catch(err => {
+        console.log(err)
+      });
+
+  }
+  return (
+    <button className='mr-5 bg-yellow-200 hover:bg-yellow-300 rounded px-1 border-solid border-2 border-yellow-400 mb-5 dark:text-black dark:hover:bg-yellow-200 dark:bg-yellow-300 dark:border-yellow-100' onClick={logOut}>Log Out</button>
+  )
+}
+export default LogOutButton;
