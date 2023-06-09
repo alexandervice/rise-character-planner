@@ -8,12 +8,14 @@ import './App.css';
 import './index.css';
 import LoginRegistration from './views/LoginRegister';
 import Switcher from './components/ThemeSwitcher';
+import Navbar from './components/Navbar';
 
 
 function App() {
   return (
     <div className="bg-white dark:bg-gray-800 text-black dark:text-white .h-screen">
       <div className="App">
+        <Navbar/>
         <h1 className='text-3xl font-bold mb-5'>RISE Character Planner</h1>
         <Switcher/>
         <BrowserRouter>
