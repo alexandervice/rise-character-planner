@@ -1,7 +1,34 @@
 const mongoose = require('mongoose');
 const bcrypt = require("bcrypt");
 const {isEmail} = require("validator");
-const Characters = require("./character.model")
+
+const CharacterSchema = new mongoose.Schema({
+  name: {
+    type: String,
+    required: [true, "Name is required"],
+    minlength: [3, "Name must be at least 3 characters long"]
+  },
+  img: {
+    data: Buffer,
+  },
+  backgrounds: {
+    type: Array,
+    default: []
+  },
+  races: {
+    type: Array,
+    default: []
+  },
+  specializations: {
+    type: Array,
+    default: []
+  },
+  talents: {
+    type: Array,
+    default: []
+  }
+}, {timestamps: true})
+
 
 const UserSchema = new mongoose.Schema({
   userName: {
@@ -20,10 +47,7 @@ const UserSchema = new mongoose.Schema({
     required: [true, "Password is required"],
     min: [6, "Password must be at least 6 characters"]
   },
-  characters: {
-    type: Array,
-    default: []
-  }
+  characters: [CharacterSchema]
 }, {timestamps: true});
 
 // Middleware to create virtual field confirm password
