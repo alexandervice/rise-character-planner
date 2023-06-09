@@ -1,5 +1,15 @@
 const CharacterController = require("../controllers/characters.controller");
 const {authenticate} = require('../config/jwt.config')
+const multer = require("multer");
+const path = require("path");
+// const fs = require("fs");
+const router = require("express").Router();
+const { v4: uuidv4 } = require('uuid');
+
+let uniqueId = uuidv4()
+const storage = multer.diskStorage({
+  
+})
 
 module.exports = app => {
     app.post('/api/characters/create', authenticate, CharacterController.createCharacter);

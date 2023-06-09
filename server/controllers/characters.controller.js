@@ -1,10 +1,12 @@
 const User = require("../models/user.model");
 
+
 module.exports = {
   createCharacter: async (req, res) => {
     try {
       const { userId } = req.params;
-      const { name, img, races, backgrounds, specializations, talents } = req.body;
+      const { name, races, backgrounds, specializations, talents } = req.body;
+      const img = req.file.path
 
       const user = await User.findById(userId);
       if (!user) {
@@ -78,7 +80,8 @@ module.exports = {
   updateCharacter: async (req, res) => {
     try {
       const { userId, characterId } = req.params;
-      const { name, img, races, backgrounds, specializations, talents } = req.body;
+      const { name, races, backgrounds, specializations, talents } = req.body;
+      const img = req.file.path
 
       const user = await User.findById(userId);
       if (!user) {
