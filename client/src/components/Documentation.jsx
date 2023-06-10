@@ -1,89 +1,100 @@
 import React, { useState, useEffect } from 'react';
 import axios from 'axios';
-import ReactPaginate from 'react-paginate';
+import { Tab, Tabs, TabList, TabPanel } from 'react-tabs';
+import 'react-tabs/style/react-tabs.css';
 
-const Documentation = () => {
+const Documentation = (props) => {
   const [races, setRaces] = useState([]);
-  const [table2Data, setTable2Data] = useState([]);
-  // Add more state variables for additional tables as needed
-
-  const [racesOffset, setRacesOffset] = useState(0);
-  const [table2Offset, setTable2Offset] = useState(0);
-  // Add more offset state variables for additional tables as needed
-
-  const [raceDataPerPage] = useState(2);
-  const [table2PerPage] = useState(3);
-  // Add more perPage state variables for additional tables as needed
-
-  const [racesCurrentPage, setRacesCurrentPage] = useState(0);
-  const [table2CurrentPage, setTable2CurrentPage] = useState(0);
-  // Add more currentPage state variables for additional tables as needed
+  const [backgrounds, setBackgrounds] = useState([]);
+  const [specializations, setSpecializations] = useState([]);
+  const [talents, setTalents] = useState([]);
+  const loggedIn = props.loggedIn
 
   useEffect(() => {
     fetchRaceData();
-    fetchDataForTable2();
+    fetchBackgroundData();
+    fetchSpecializationData();
+    fetchTalentData();
     // Fetch data for additional tables as needed
   }, []);
 
   const fetchRaceData = async () => {
     try {
-      const response = await axios.get('/api/races/find/all');
+      const response = await axios.get('http://localhost:8000/api/races/find/all');
       setRaces(response.data.races);
+      // console.log(response.data.races)
+      console.log(loggedIn)
     } catch (error) {
-      console.error('Error fetching data for table1:', error);
+      console.error('Error fetching data for races:', error);
     }
   };
 
-  const fetchDataForTable2 = async () => {
+  const fetchBackgroundData = async () => {
     try {
-      const response = await axios.get('/api/table2'); // Replace with your backend API endpoint for table2
-      setTable2Data(response.data);
+      const response = await axios.get('http://localhost:8000/api/backgrounds/find/all'); 
+      setBackgrounds(response.data.backgrounds);
+      // console.log(response.data.backgrounds)
     } catch (error) {
-      console.error('Error fetching data for table2:', error);
+      console.error('Error fetching data for backgrounds:', error);
     }
   };
 
-  // Fetch data for additional tables as needed
-
-
-  // Rest of the code...
-
-
-  const handleRacePageChange = (selectedPage) => {
-    const newOffset = selectedPage * raceDataPerPage;
-    setRacesOffset(newOffset);
-    setRacesCurrentPage(selectedPage);
+  const fetchSpecializationData = async () => {
+    try {
+      const response = await axios.get('http://localhost:8000/api/specializations/find/all'); 
+      setSpecializations(response.data.specializations);
+      // console.log(response.data.specializations)
+    } catch (error) {
+      console.error('Error fetching data for specializations:', error);
+    }
   };
-  
-  const handleTable2PageChange = (selectedPage) => {
-    const newOffset = selectedPage * table2PerPage;
-    setTable2Offset(newOffset);
-    setTable2CurrentPage(selectedPage);
+
+  const fetchTalentData = async () => {
+    try {
+      const response = await axios.get('http://localhost:8000/api/talents/find/all'); 
+      setTalents(response.data.talents);
+      // console.log(response.data.talents)
+    } catch (error) {
+      console.error('Error fetching data for talents:', error);
+    }
   };
-  
-  // Implement page change handlers for additional tables as needed
 
 
   const renderRaceData = () => {
-    const slice = races.slice(racesOffset, racesOffset + raceDataPerPage);
-    return slice.map((item) => (
-      <tr key={item.id}>
-        <td>{item.name}</td>
-        <td>{item.description}</td>
+    return races.map((item, index)=> (
+      <tr key={index}  className=' hover:bg-zinc-500'>
+        <td className='py-2 px-3 border border-slate-200'>{item.name}</td>
+        <td className='py-2 px-3 border border-slate-200'>{item.description}</td>
       </tr>
-    ));
+      ))
   };
   
-  const renderTable2Data = () => {
-    const slice = table2Data.slice(table2Offset, table2Offset + table2PerPage);
-    return slice.map((item) => (
-      <tr key={item.id}>
-        <td>{item.name}</td>
-        <td>{item.description}</td>
+  const renderBackgroundData = () => {
+    return backgrounds.map((item, index)=> (
+      <tr key={index} className=' hover:bg-zinc-500'>
+        <td className='py-2 px-3 border border-slate-200'>{item.name}</td>
+        <td className='py-2 px-3 border border-slate-200'>{item.description}</td>
       </tr>
-    ));
+    ))
   };
   
+  const renderSpecializationData = () => {
+    return specializations.map((item, index)=> (
+      <tr key={index}  className=' hover:bg-zinc-500'>
+        <td className='py-2 px-3 border border-slate-200'>{item.name}</td>
+        <td className='py-2 px-3 border border-slate-200'>{item.description}</td>
+      </tr>
+      ))
+  };
+  
+  const renderTalentData = () => {
+    return talents.map((item, index)=> (
+      <tr key={index} className=' hover:bg-zinc-500'>
+        <td className='py-2 px-3 border border-slate-200'>{item.name}</td>
+        <td className='py-2 px-3 border border-slate-200'>{item.description}</td>
+      </tr>
+    ))
+  };
   // Render data for additional tables as needed
 
 
@@ -93,12 +104,12 @@ const Documentation = () => {
     }
   
     return (
-      <table>
+      <table className='table-auto border border-slate-500'>
         {/* Render table1 header */}
         <thead>
           <tr>
-            <th>Name</th>
-            <th>Description</th>
+            <th className='border py-5 dark:border-slate-200 dark:bg-zinc-700'>Name</th>
+            <th className='border dark:border-slate-200 dark:bg-zinc-700'>Description</th>
           </tr>
         </thead>
         {/* Render table1 data */}
@@ -107,68 +118,88 @@ const Documentation = () => {
     );
   };
   
-  const renderTable2 = () => {
-    if (table2Data.length === 0) {
-      return <div>Loading table2 data...</div>;
+  const renderBackgrounds = () => {
+    if (backgrounds.length === 0) {
+      return <div>Loading Background data...</div>;
     }
   
     return (
-      <table>
-        {/* Render table2 header */}
+      <table className='table-auto border border-slate-500'>
+        {/* Render table1 header */}
         <thead>
           <tr>
-            <th>Name</th>
-            <th>Description</th>
+            <th className='border py-5 dark:border-slate-200 dark:bg-zinc-700'>Name</th>
+            <th className='border dark:border-slate-200 dark:bg-zinc-700'>Description</th>
           </tr>
         </thead>
-        {/* Render table2 data */}
-        <tbody>{renderTable2Data()}</tbody>
+        {/* Render table1 data */}
+        <tbody>{renderBackgroundData()}</tbody>
       </table>
     );
   };
   
-  // Render tables for additional tables as needed
-  
-  const renderTable1Pagination = () => {
-    const pageCount = Math.ceil(races.length / raceDataPerPage);
+  const renderSpecializations = () => {
+    if (specializations.length === 0) {
+      return <div>Loading Specialization data...</div>;
+    }
   
     return (
-      <ReactPaginate
-        previousLabel="Previous"
-        nextLabel="Next"
-        pageCount={pageCount}
-        onPageChange={handleRacePageChange}
-        containerClassName="pagination"
-        activeClassName="active"
-      />
+      <table className='table-auto border border-slate-500'>
+        {/* Render table1 header */}
+        <thead>
+          <tr>
+            <th className='border py-5 dark:border-slate-200 dark:bg-zinc-700'>Name</th>
+            <th className='border dark:border-slate-200 dark:bg-zinc-700'>Description</th>
+          </tr>
+        </thead>
+        {/* Render table1 data */}
+        <tbody>{renderSpecializationData()}</tbody>
+      </table>
     );
   };
   
-  const renderTable2Pagination = () => {
-    const pageCount = Math.ceil(table2Data.length / table2PerPage);
+  const renderTalents = () => {
+    if (talents.length === 0) {
+      return <div>Loading Talent data...</div>;
+    }
   
     return (
-      <ReactPaginate
-        previousLabel="Previous"
-        nextLabel="Next"
-        pageCount={pageCount}
-        onPageChange={handleTable2PageChange}
-        containerClassName="pagination"
-        activeClassName="active"
-      />
+      <table className='table-auto border border-slate-500'>
+        {/* Render table1 header */}
+        <thead>
+          <tr>
+            <th className='border py-5 dark:border-slate-200 dark:bg-zinc-700'>Name</th>
+            <th className='border dark:border-slate-200 dark:bg-zinc-700'>Description</th>
+          </tr>
+        </thead>
+        {/* Render table1 data */}
+        <tbody>{renderTalentData()}</tbody>
+      </table>
     );
   };
-  
-  // Render pagination for additional tables as needed
-  
 
   return (
-    <div>
-      {renderRaces()}
-      {renderTable1Pagination()}
-  
-      {renderTable2()}
-      {renderTable2Pagination()}
+    <div className='p-5 bg-gray-300 dark:bg-zinc-800 text-black dark:text-white'>
+      <Tabs>
+        <TabList>
+          <Tab>Races</Tab>
+          <Tab>Backgrounds</Tab>
+          <Tab>Specializations</Tab>
+          <Tab>Talents</Tab>
+        </TabList>
+        <TabPanel>
+          {renderRaces()}
+        </TabPanel>
+        <TabPanel>
+          {renderBackgrounds()}
+        </TabPanel>
+        <TabPanel>
+          {renderSpecializations()}
+        </TabPanel>
+        <TabPanel>
+          {renderTalents()}
+        </TabPanel>
+      </Tabs>
     </div>
   );
   

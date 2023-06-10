@@ -4,8 +4,9 @@ import RegistrationForm from '../components/RegistrationForm';
 import { Tab, Tabs, TabList, TabPanel } from 'react-tabs';
 import 'react-tabs/style/react-tabs.css';
 
-const LoginRegistration = () => {
-  
+const LoginRegistration = (props) => {
+  const setLoggedIn = props.setLoggedIn
+
   return (
     <div className='p-5 bg-gray-300 dark:bg-gray-600 text-black dark:text-white'>
       <Tabs>
@@ -14,10 +15,10 @@ const LoginRegistration = () => {
           <Tab>Log in</Tab>
         </TabList>
         <TabPanel>
-          <RegistrationForm/>
+          <RegistrationForm setLoggedIn={setLoggedIn}/>
         </TabPanel>
         <TabPanel>
-          <LoginForm/>
+          <LoginForm setLoggedIn={setLoggedIn}/>
         </TabPanel>
       </Tabs>
     </div>

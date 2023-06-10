@@ -11,7 +11,7 @@ const CharacterList = (props) => {
         <thead className='bg-slate-100'>
           <tr>
             <th className='py-2 px-3'>Character Name</th>
-            <th className='py-2 px-3'>Character Details</th>
+            {/* <th className='py-2 px-3'>Character Details</th> */}
             <th className='py-2 px-3'>Actions Available</th>
           </tr>
         </thead>
@@ -23,7 +23,7 @@ const CharacterList = (props) => {
               <td className='py-2 px-3 text-blue-500'>
                 <Link to={`/stores/${character._id}`}>{character.name}</Link>
               </td>
-              <td className='py-2 px-3'>{character.details}</td>
+              {/* <td className='py-2 px-3'>{character.details}</td> */}
               <td className='py-2 px-3'>
                 <Link className='mr-3' to={`/characters/edit/${character._id}`}><button className='bg-blue-200 hover:bg-blue-300 rounded px-1 border-solid border-2 border-blue-400'>Edit</button></Link>
                 <DeleteButton characterId={character._id} successCallback = {deleteCharacter}/>

@@ -2,10 +2,10 @@ import React, { useState } from 'react';
 import axios from "axios";
 import {useNavigate} from "react-router-dom";
 
-const RegistrationForm = () => {
+const RegistrationForm = (props) => {
   const navigate = useNavigate();
   const [errors, setErrors] = useState([]);
-
+  const setLoggedIn = props.setLoggedIn
   const [userInfo, setUserInfo] = useState({
     userName: "",
     email: "",
@@ -25,6 +25,8 @@ const RegistrationForm = () => {
     axios.post("http://localhost:8000/api/register", userInfo, {withCredentials: true})
       .then(res => {
         console.log(res.data);
+        localStorage.setItem('username', userInfo.userName);
+        setLoggedIn(true)
         navigate("/dashboard");
       })
       .catch(err => {
@@ -48,19 +50,19 @@ const RegistrationForm = () => {
           )}
           <div className="form-group">
             <label htmlFor="userName">Username</label>
-            <input type="text" className="form-input mb-5 ml-2 py-0 px-1" name="userName" id="userName" placeholder="Username" onChange={changeHandler}/>
+            <input type="text" className="form-input mb-5 ml-2 py-0 px-1  dark:text-black" name="userName" id="userName" placeholder="Username" onChange={changeHandler}/>
           </div>
           <div className="form-group">
             <label htmlFor="email">Email Address</label>
-            <input type="email" className="form-input mb-5 ml-2 py-0 px-1" name="email" id="email" placeholder="Email Address" onChange={changeHandler}/>
+            <input type="email" className="form-input mb-5 ml-2 py-0 px-1 dark:text-black" name="email" id="email" placeholder="Email Address" onChange={changeHandler}/>
           </div>
           <div className="form-group">
             <label htmlFor="password">Password</label>
-            <input type="password" className="form-input mb-5 ml-2 py-0 px-1" name="password" id="password" placeholder="Password" onChange={changeHandler}/>
+            <input type="password" className="form-input mb-5 ml-2 py-0 px-1 dark:text-black" name="password" id="password" placeholder="Password" onChange={changeHandler}/>
           </div>
           <div className="form-group">
             <label htmlFor="confirmPassword">Confirm Password</label>
-            <input type="password" className="form-input mb-5 ml-2 py-0 px-1" name="confirmPassword" id="confirmPassword" placeholder="Confirm Password" onChange={changeHandler}/>
+            <input type="password" className="form-input mb-5 ml-2 py-0 px-1 dark:text-black" name="confirmPassword" id="confirmPassword" placeholder="Confirm Password" onChange={changeHandler}/>
           </div>
           <button type="submit" className="bg-green-200 hover:bg-green-300 rounded px-1 border-solid border-2 border-green-400  dark:bg-green-800 dark:hover:bg-green-700">Register</button>
         </form>

@@ -6,7 +6,7 @@ const CancelButton = (props) => {
     navigate("/dashboard");
   }
   return (
-    <button className='mr-5 bg-yellow-200 hover:bg-yellow-300 rounded px-1 border-solid border-2 border-yellow-400' onClick={cancel}>Go Home</button>
+    <button className='mr-5 bg-yellow-200 hover:bg-yellow-300 rounded px-1 border-solid border-2 border-yellow-400 dark:text-black' onClick={cancel}>Cancel</button>
   )
 }
 export default CancelButton;
