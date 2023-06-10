@@ -7,18 +7,15 @@ import UpdateCharacter from './components/UpdateCharacter';
 import './App.css';
 import './index.css';
 import LoginRegistration from './views/LoginRegister';
-import Switcher from './components/ThemeSwitcher';
 import Navbar from './components/Navbar';
 
 
 function App() {
   return (
-    <div className="bg-white dark:bg-gray-800 text-black dark:text-white .h-screen">
-      <div className="App">
+  <BrowserRouter>
+    <div className="App">
+      <div className="bg-white dark:bg-gray-800 text-black dark:text-white .h-screen w-screen max-w-7xl">
         <Navbar/>
-        <h1 className='text-3xl font-bold mb-5'>RISE Character Planner</h1>
-        <Switcher/>
-        <BrowserRouter>
           <Routes>
             <Route element={<LoginRegistration/>} path="/" default/>
             {/* this is the default path ^ */}
@@ -27,9 +24,9 @@ function App() {
             <Route element={<UpdateCharacter/>} path="/characters/edit/:id"/>
             <Route element={<CreateCharacter/>} path="/characters/create"/>
           </Routes>
-        </BrowserRouter>
       </div>
     </div>
+  </BrowserRouter>
   );
 }
 
