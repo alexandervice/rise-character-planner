@@ -25,7 +25,7 @@ const LoginForm = (props) => {
       .then(res => {
         console.log(res.data.user);
         localStorage.setItem('username', userInfo.userName);
-        localStorage.setItem('user', res.data.user);
+        localStorage.setItem('user', res.data.user); // work on getting this data to every page so that I can keep trakc of userId ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
         setLoggedIn(true)
         navigate("/dashboard");
       })
