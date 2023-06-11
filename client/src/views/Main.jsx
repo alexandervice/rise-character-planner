@@ -4,7 +4,7 @@ import CharacterList from '../components/CharacterList';
 const Main = (props) => {
   const [characterArray, setCharacterArray] = useState([]);
   useEffect(()=>{
-    axios.get("http://localhost:8000/api/characters/find/all")
+    axios.get(`http://localhost:8000/api/users/${userId}/characters`)
       .then((res)=>{
         // console.log(res.data.characters);
         setCharacterArray(res.data.characters);

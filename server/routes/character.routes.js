@@ -33,10 +33,10 @@ const upload = multer({
 });
 
 module.exports = app => {
-    app.post('/api/characters/create', authenticate, upload.single("image"), CharacterController.createCharacter);
-    app.get('/api/characters/find/all', authenticate, CharacterController.getCharacters);
-    app.get('/api/characters/find/:id', authenticate, CharacterController.getCharacterById);
+    app.post('/api/users/:id/characters/create', authenticate, CharacterController.createCharacter);
+    app.get('/api/users/:id/characters', authenticate, CharacterController.getCharacters);
+    app.get('/api/users/:id/characters/find/:id', authenticate, CharacterController.getCharacterById);
     // Patch only changes values in the req.body
-    app.patch('/api/characters/update/:id', authenticate, upload.single("image"), CharacterController.updateCharacter); 
-    app.delete('/api/characters/delete/:id', authenticate, CharacterController.deleteCharacter);
+    app.patch('/api/users/:id/characters/update/:id', authenticate, upload.single("image"), CharacterController.updateCharacter); 
+    app.delete('/api/users/:id/characters/delete/:id', authenticate, CharacterController.deleteCharacter);
 }

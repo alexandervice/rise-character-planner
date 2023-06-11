@@ -4,7 +4,7 @@ import { useNavigate, useParams, Link } from "react-router-dom";
 import CharacterForm from './CharacterForm';
 
 const UpdateCharacter = (props) => {
-  const { id } = useParams();
+  const { characterId } = useParams();
   const [character, setCharacter] = useState({});
   const [errors, setErrors] = useState([]);
   const [loaded, setLoaded] =useState(false)
@@ -12,7 +12,7 @@ const UpdateCharacter = (props) => {
   const navigate = useNavigate();
 
   useEffect(() => {
-    axios.get(`http://localhost:8000/api/characters/find/${id}`)
+    axios.get(`http://localhost:8000/api/users/${userId}/characters/find/${characterId}`)
       .then(res => {
         setCharacter(res.data.character)
         console.log(res.data.character)
@@ -25,7 +25,7 @@ const UpdateCharacter = (props) => {
   }, [])
 
   const updateCharacter = characterData => {
-    axios.patch(`http://localhost:8000/api/characters/update/${id}`, characterData)
+    axios.patch(`http://localhost:8000/api/users/${userId}/characters/update/${characterId}`, characterData)
       .then(res => {
         console.log(res);
         navigate(`/characters/${res.data.character._id}`);

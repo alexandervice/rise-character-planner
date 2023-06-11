@@ -5,11 +5,11 @@ import CancelButton from './CancelButton';
 
 const OneCharacter = (props) => {
   const [character, setCharacter] = useState({});
-  const {id} = useParams();
+  const {characterId} = useParams();
 
 
   useEffect(() => {
-    axios.get(`http://localhost:8000/api/characters/find/${id}`)
+    axios.get(`http://localhost:8000/api/users/${userId}/characters/find/${characterId}`)
       .then( res => {
         console.log(res.data.character);
         setCharacter(res.data.character);

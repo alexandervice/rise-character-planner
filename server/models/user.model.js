@@ -13,25 +13,25 @@ const CharacterSchema = new mongoose.Schema({
   },
   races: [
     {
-      type: mongoose.Schema.Types.ObjectId,
+      type: [mongoose.Schema.Types.ObjectId],
       ref: "Races"
     }
   ],
   backgrounds: [
     {
-      type: mongoose.Schema.Types.ObjectId,
+      type: [mongoose.Schema.Types.ObjectId],
       ref: "Backgrounds"
     }
   ],
   specializations: [
     {
-      type: mongoose.Schema.Types.ObjectId,
+      type: [mongoose.Schema.Types.ObjectId],
       ref: "Specializations"
     }
   ],
   talents: [
     {
-      type: mongoose.Schema.Types.ObjectId,
+      type: [mongoose.Schema.Types.ObjectId],
       ref: "Talents"
     }
   ],
@@ -55,7 +55,10 @@ const UserSchema = new mongoose.Schema({
     required: [true, "Password is required"],
     minlength: [6, "Password must be at least 6 characters"]
   },
-  characters: [CharacterSchema]
+  characters: {
+    type: [CharacterSchema],
+    default: []
+  }
 }, {timestamps: true});
 
 // Middleware to create virtual field confirm password
@@ -80,6 +83,7 @@ UserSchema.pre('save', function (next) {
       });
 });
 
-const Users = mongoose.model('Users', UserSchema);
+const User = mongoose.model('Users', UserSchema);
+// const Character = mongoose.model("Character", CharacterSchema)
 
-module.exports = Users;
+module.exports = User;

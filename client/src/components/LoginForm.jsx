@@ -23,8 +23,9 @@ const LoginForm = (props) => {
     e.preventDefault();
     axios.post("http://localhost:8000/api/login", userInfo, {withCredentials: true})
       .then(res => {
-        console.log(res.data);
+        console.log(res.data.user);
         localStorage.setItem('username', userInfo.userName);
+        localStorage.setItem('user', res.data.user);
         setLoggedIn(true)
         navigate("/dashboard");
       })

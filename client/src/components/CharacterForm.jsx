@@ -17,8 +17,8 @@ const CharacterForm= (props) => {
         <p className='error' key={index}>{err}</p>
         )}
         <h5>
-          <label htmlFor="name">Character Name:</label>
-          <input type="text" name='name' className='form-input mb-5 ml-2 py-0 px-1 dark:text-black' value={name} onChange={(e) => setName(e.target.value)}/>
+          <label htmlFor="characterName">Character Name:</label>
+          <input type="text" id='characterName' name='name' className='form-input mb-5 ml-2 py-0 px-1 dark:text-black' value={name} onChange={(e) => setName(e.target.value)}/>
         </h5>
         <div className='formButtons'>
           <CancelButton/>

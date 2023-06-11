@@ -36,7 +36,7 @@ module.exports = {
         if(passwordMatch){
           const userToken = jwt.sign({_id: user._id, email:user.email}, secret, {expiresIn: "2h"}); // can make this expire later with "7d" or "24h"
           res.cookie("usertoken", userToken, {httpOnly: true}).json({
-            message: "Success!",
+            message: "Log in successful!",
             user: user
           });
         }
@@ -53,7 +53,7 @@ module.exports = {
       }
     }
     catch (err) {
-      return res.json(err);
+      return res.status(500).json({ message: "Internal server error" });
     }
   },
 

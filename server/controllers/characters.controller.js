@@ -5,8 +5,11 @@ module.exports = {
   createCharacter: async (req, res) => {
     try {
       const { userId } = req.params;
-      const { name, races, backgrounds, specializations, talents } = req.body;
-      const img = req.file.path
+      // const { name, races, backgrounds, specializations, talents } = req.body;
+      // const img = req.file.path;
+      const { name } = req.body;
+      // const img = ""
+      // races = []
 
       const user = await User.findById(userId);
       if (!user) {
@@ -16,11 +19,11 @@ module.exports = {
       // Create the character object
       const character = {
         name,
-        img,
-        races,
-        backgrounds,
-        specializations,
-        talents
+        // img,
+        // races,
+        // backgrounds,
+        // specializations,
+        // talents
       };
 
       // Add the character to the user's characters array

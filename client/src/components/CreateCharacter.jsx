@@ -8,7 +8,7 @@ const CreateCharacter = (props) => {
   const navigate = useNavigate();
 
   const createCharacter = characterData => {
-    axios.post('http://localhost:8000/api/characters/create', characterData)
+    axios.post(`http://localhost:8000/api/users/${userId}/characters/create`, characterData)
       .then(res=>{
         console.log(res.data);
         navigate(`/characters/${res.data.character._id}`);
