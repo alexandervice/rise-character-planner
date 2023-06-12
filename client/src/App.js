@@ -15,7 +15,7 @@ function App() {
   const [loggedIn, setLoggedIn] = useState(false);
   
   const checkToken = () => {
-    if (localStorage.getItem('username')) {
+    if (localStorage.getItem('user')) {
       setLoggedIn(true);
     } else {
       setLoggedIn(false);
@@ -35,10 +35,10 @@ function App() {
             <Routes>
               <Route element={<LoginRegistration setLoggedIn={setLoggedIn}/>} path="/" default/>
               {/* this is the default path ^ */}
-              <Route element={<Main/>} path="/dashboard"/>
-              <Route element={<OneCharacter/>} path="/characters/:id"/>
-              <Route element={<UpdateCharacter/>} path="/characters/edit/:id"/>
-              <Route element={<CreateCharacter/>} path="/characters/create"/>
+              <Route element={<Main/>} path="/:userId/characters"/>
+              <Route element={<OneCharacter/>} path="/:userId/characters/:characterId"/>
+              <Route element={<UpdateCharacter/>} path="/:userId/characters/edit/:characterId"/>
+              <Route element={<CreateCharacter/>} path="/:userId/characters/create"/>
               <Route element={<Documentation loggedIn={loggedIn}/>} path="/documentation"/>
             </Routes>
           </div>

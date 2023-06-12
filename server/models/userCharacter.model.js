@@ -72,27 +72,27 @@ const UserSchema = new mongoose.Schema({
 //     });
 // };
 
-// Middleware to create virtual field confirm password
-UserSchema.virtual("confirmPassword")
-  .get(() => this._confirmPassword)
-  .set((value) => this._confirmPassword = value);
+// // Middleware to create virtual field confirm password
+// UserSchema.virtual("confirmPassword")
+//   .get(() => this._confirmPassword)
+//   .set((value) => this._confirmPassword = value);
 
-// Middleware to validate the password and confirm password match
-UserSchema.pre('validate', function (next) {
-  if (this.password !== this.confirmPassword) {
-      this.invalidate('confirmPassword', 'Passwords must match');
-  }
-  next();
-});
+// // Middleware to validate the password and confirm password match
+// UserSchema.pre('validate', function (next) {
+//   if (this.password !== this.confirmPassword) {
+//       this.invalidate('confirmPassword', 'Passwords must match');
+//   }
+//   next();
+// });
 
-// Middleware to hash the password
-UserSchema.pre('save', function (next) {
-  bcrypt.hash(this.password, 10)
-      .then(hash => {
-          this.password = hash;
-          next();
-      });
-});
+// // Middleware to hash the password
+// UserSchema.pre('save', function (next) {
+//   bcrypt.hash(this.password, 10)
+//       .then(hash => {
+//           this.password = hash;
+//           next();
+//       });
+// });
 
 
 const User = mongoose.model('Users', UserSchema);

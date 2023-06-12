@@ -3,10 +3,12 @@ import axios from 'axios';
 import CharacterList from '../components/CharacterList';
 const Main = (props) => {
   const [characterArray, setCharacterArray] = useState([]);
+  const user = JSON.parse(localStorage.getItem("user"))
+  
   useEffect(()=>{
-    axios.get(`http://localhost:8000/api/users/${userId}/characters`)
+    axios.get(`http://localhost:8000/api/users/${user._id}/characters`)
       .then((res)=>{
-        // console.log(res.data.characters);
+        console.log(res.data);
         setCharacterArray(res.data.characters);
       })
       .catch(err=>console.log(err))

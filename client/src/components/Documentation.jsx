@@ -22,6 +22,7 @@ const Documentation = (props) => {
     try {
       const response = await axios.get('http://localhost:8000/api/races/find/all');
       setRaces(response.data.races);
+      // console.log(localStorage.getItem("user"))
       // console.log(response.data.races)
       console.log(loggedIn)
     } catch (error) {

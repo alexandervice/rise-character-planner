@@ -1,11 +1,11 @@
 import React from 'react'
 import axios from 'axios';
 const DeleteButton = (props) => {
-  const { CharacterId, successCallback } = props;
-  const userId = localStorage.getItem("user")._id
+  const { characterId, successCallback } = props;
+  const user = JSON.parse(localStorage.getItem("user"))
   
   const deleteCharacter = e => {
-    axios.delete(`http://localhost:8000/api/users/${userId}/characters/delete/${CharacterId}`)
+    axios.delete(`http://localhost:8000/api/users/${user._id}/characters/delete/${characterId}`)
       .then(res=>{
         successCallback();
         console.log("character deleted")

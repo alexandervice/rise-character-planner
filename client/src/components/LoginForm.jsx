@@ -19,15 +19,15 @@ const LoginForm = (props) => {
   }
 
   const submitHandler = (e) => {
-    console.log(userInfo)
+    // console.log(userInfo)
     e.preventDefault();
     axios.post("http://localhost:8000/api/login", userInfo, {withCredentials: true})
       .then(res => {
-        console.log(res.data.user);
-        localStorage.setItem('username', userInfo.userName);
-        localStorage.setItem('user', res.data.user); // work on getting this data to every page so that I can keep trakc of userId ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+        // console.log(res.data.user);
+        // localStorage.setItem('username', userInfo.userName);
+        localStorage.setItem('user', JSON.stringify(res.data.user));
         setLoggedIn(true)
-        navigate("/dashboard");
+        navigate(`/${res.data.user._id}/characters`);
       })
       .catch(err => {
         console.log(err.response.data.message)
@@ -49,11 +49,11 @@ const LoginForm = (props) => {
           <p className='error mb-3' key={index}>{err}</p>
           )}
           <div className="form-group">
-            <label htmlFor="email">Email Address</label>
+            <label htmlFor="loginEmail">Email Address</label>
             <input type="email" className="form-input mb-5 ml-2 py-0 px-1 dark:text-black" name="email" id="loginEmail" placeholder="Email Address" onChange={changeHandler}/>
           </div>
           <div className="form-group">
-            <label htmlFor="password">Password</label>
+            <label htmlFor="loginPassword">Password</label>
             <input type="password" className="form-input mb-5 ml-2 py-0 px-1 dark:text-black" name="password" id="loginPassword" placeholder="Password" onChange={changeHandler}/>
           </div>
           <button type="submit" className="bg-green-200 hover:bg-green-300 rounded px-1 border-solid border-2 border-green-400 dark:bg-green-800 dark:hover:bg-green-700">Log In</button>

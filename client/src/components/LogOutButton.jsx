@@ -10,7 +10,7 @@ const LogOutButton = (props) => {
     axios.post("http://localhost:8000/api/logout")
       .then(res => {
         console.log(res.data);
-        localStorage.removeItem("username")
+        localStorage.removeItem("user")
         setLoggedIn(false)
         navigate("/");
       })

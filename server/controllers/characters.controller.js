@@ -5,7 +5,7 @@ module.exports = {
   createCharacter: async (req, res) => {
     try {
       const { userId } = req.params;
-      // const { name, races, backgrounds, specializations, talents } = req.body;
+      // const { name, race, background, specializations, talents } = req.body;
       // const img = req.file.path;
       const { name } = req.body;
       // const img = ""
@@ -20,17 +20,17 @@ module.exports = {
       const character = {
         name,
         // img,
-        // races,
-        // backgrounds,
+        // race,
+        // background,
         // specializations,
         // talents
       };
 
       // Add the character to the user's characters array
       user.characters.push(character);
-
+      // console.log("attempting to save character")
       // Save the updated user document
-      await user.save();
+      await user.save({ validateBeforeSave: false });
 
       return res.status(201).json({ character });
     } catch (error) {
@@ -83,7 +83,7 @@ module.exports = {
   updateCharacter: async (req, res) => {
     try {
       const { userId, characterId } = req.params;
-      const { name, races, backgrounds, specializations, talents } = req.body;
+      const { name, race, background, specializations, talents, backstory } = req.body;
       const img = req.file.path
 
       const user = await User.findById(userId);
@@ -99,13 +99,14 @@ module.exports = {
       // Update the character fields
       character.name = name;
       character.img = img;
-      character.races = races;
-      character.backgrounds = backgrounds;
+      character.race = race;
+      character.background = background;
       character.specializations = specializations;
       character.talents = talents
+      character.backstory = backstory
 
       // Save the updated user document
-      await user.save();
+      await user.save({ validateBeforeSave: false });
 
       return res.status(200).json({ character });
     } catch (error) {
@@ -128,12 +129,12 @@ module.exports = {
       if (!character) {
         return res.status(404).json({ error: 'Character not found' });
       }
-
+      
       // Remove the character from the user's characters array
-      character.remove();
+      character.deleteOne();
 
       // Save the updated user document
-      await user.save();
+      await user.save({ validateBeforeSave: false });
 
       return res.status(200).json({ message: 'Character deleted' });
     } catch (error) {

@@ -24,10 +24,11 @@ const RegistrationForm = (props) => {
     e.preventDefault();
     axios.post("http://localhost:8000/api/register", userInfo, {withCredentials: true})
       .then(res => {
-        console.log(res.data);
-        localStorage.setItem('username', userInfo.userName);
+        // console.log(res.data);
+        // localStorage.setItem('username', userInfo.userName);
+        localStorage.setItem('user', JSON.stringify(res.data.user));
         setLoggedIn(true)
-        navigate("/dashboard");
+        navigate(`/${res.data.user._id}/characters`);
       })
       .catch(err => {
         console.log(err)

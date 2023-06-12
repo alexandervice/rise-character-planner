@@ -34,7 +34,7 @@ module.exports = {
       if(user){
         const passwordMatch = await bcrypt.compare(req.body.password, user.password); // check for password and email matching
         if(passwordMatch){
-          const userToken = jwt.sign({_id: user._id, email:user.email}, secret, {expiresIn: "2h"}); // can make this expire later with "7d" or "24h"
+          const userToken = jwt.sign({_id: user._id, email:user.email}, secret); // can add {expiresIn: "2h"} make this expire in 2h or later with "7d" or "24h"
           res.cookie("usertoken", userToken, {httpOnly: true}).json({
             message: "Log in successful!",
             user: user

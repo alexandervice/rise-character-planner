@@ -8,11 +8,12 @@ const UpdateCharacter = (props) => {
   const [character, setCharacter] = useState({});
   const [errors, setErrors] = useState([]);
   const [loaded, setLoaded] =useState(false)
+  const user = JSON.parse(localStorage.getItem("user"))
 
   const navigate = useNavigate();
 
   useEffect(() => {
-    axios.get(`http://localhost:8000/api/users/${userId}/characters/find/${characterId}`)
+    axios.get(`http://localhost:8000/api/users/${user._id}/characters/find/${characterId}`)
       .then(res => {
         setCharacter(res.data.character)
         console.log(res.data.character)
@@ -25,10 +26,10 @@ const UpdateCharacter = (props) => {
   }, [])
 
   const updateCharacter = characterData => {
-    axios.patch(`http://localhost:8000/api/users/${userId}/characters/update/${characterId}`, characterData)
+    axios.patch(`http://localhost:8000/api/users/${user._id}/characters/update/${characterId}`, characterData)
       .then(res => {
         console.log(res);
-        navigate(`/characters/${res.data.character._id}`);
+        navigate(`/${user._id}/characters/${res.data.character._id}`);
       })
       .catch(err => {
         console.log(err)
@@ -51,7 +52,7 @@ const UpdateCharacter = (props) => {
       </div>:
       <div>
         <p>"We're sorry, but we could not find the character you are looking for. Would you like to create a new character?"</p>
-        <Link className='characterItem ' to={"/characters/create"}><button className='bg-purple-100 hover:bg-purple-200 rounded px-1 border-solid border-2 mt-3 border-purple-500 mb-5'>Create a New Character</button></Link>
+        <Link className='characterItem ' to={`/${user._id}/characters/create`}><button className='bg-purple-100 hover:bg-purple-200 rounded px-1 border-solid border-2 mt-3 border-purple-500 mb-5'>Create a New Character</button></Link>
       </div>}
     </div>
   )

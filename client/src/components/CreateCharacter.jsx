@@ -6,12 +6,13 @@ import CharacterForm from './CharacterForm';
 const CreateCharacter = (props) => {
   const [errors, setErrors] = useState([]);
   const navigate = useNavigate();
+  const user = JSON.parse(localStorage.getItem("user"))
 
   const createCharacter = characterData => {
-    axios.post(`http://localhost:8000/api/users/${userId}/characters/create`, characterData)
+    axios.post(`http://localhost:8000/api/users/${user._id}/characters/create`, characterData)
       .then(res=>{
-        console.log(res.data);
-        navigate(`/characters/${res.data.character._id}`);
+        console.log(res);
+        navigate(`/${user._id}/characters`);
       })
       .catch(err=> {
         console.log(characterData)
