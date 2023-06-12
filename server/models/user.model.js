@@ -56,21 +56,6 @@ const UserSchema = new mongoose.Schema({
   }
 }, {timestamps: true});
 
-// Update user without validating password and confirm password match
-// UserSchema.statics.updateUser = function (userId, updateData) {
-//   return this.findById(userId)
-//     .then(user => {
-//       if (!user) {
-//         throw new Error('User not found');
-//       }
-
-//       // Update the user fields
-//       user.characters = updateData.characters;
-
-//       // Save the updated user without validation
-//       return user.save({ validateBeforeSave: false });
-//     });
-// };
 
 // Middleware to create virtual field confirm password
 UserSchema.virtual("confirmPassword")

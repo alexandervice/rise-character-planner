@@ -42,7 +42,7 @@ module.exports = {
         }
         else {
           res.status(400).json({
-            message: "Invalid login attempt" // don't clarify why, so hackers don't know the email was valid and password invalid. keep the message ambiguous 
+            message: "Invalid login attempt poo" // don't clarify why, so hackers don't know the email was valid and password invalid. keep the message ambiguous 
           });
         }
       }

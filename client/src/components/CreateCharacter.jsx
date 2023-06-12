@@ -29,7 +29,7 @@ const CreateCharacter = (props) => {
 
   return (
     <div>
-      <h3 className=' font-bold'>Create New Character:</h3>
+      <h3 className=' font-bold text-3xl mb-3'>Create New Character:</h3>
       <div>
         <CharacterForm onSubmission={createCharacter} placeholderName={""} errors={errors}/>
       </div>

@@ -45,7 +45,7 @@ const UpdateCharacter = (props) => {
 
   return (
     <div>
-      <h3 className=' font-bold'>Edit Character:</h3>
+      <h3 className=' font-bold text-3xl mb-3'>Edit Character:</h3>
       {loaded? 
       <div>
         <CharacterForm onSubmission={updateCharacter} placeholderName={character.name} placeholderDetails={character.details} errors={errors}/>
