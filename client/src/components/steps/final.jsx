@@ -5,6 +5,16 @@ import CancelButton from '../CancelButton';
 const Final = (props) => {
   const {characterData, setCharacterData, activeStep, setActiveStep} = props
 
+  const handleNameChange = (e) => {
+    setCharacterData({ ...characterData, name: e.target.value });
+    console.log(characterData)
+  };
+
+  const handleBackstoryChange = (e) => {
+    setCharacterData({ ...characterData, backstory: e.target.value });
+    console.log(characterData)
+  };
+
   return (
     <div className='bg-zinc-800 rounded py-5'>
       <StepButtons activeStep={activeStep} setActiveStep={setActiveStep} />
@@ -13,13 +23,13 @@ const Final = (props) => {
         <div className='form-group'>
           <label htmlFor="characterName">
             Character Name:
-            <input type="text" required id='characterName' name='name' className='form-input mb-5 ml-2 py-0 px-1 dark:text-black' value={characterData.name} onChange={(e) => setCharacterData(e.target.value)}/>
+            <input type="text" required id='characterName' name='name' className='form-input mb-5 ml-2 py-0 px-1 dark:text-black' value={characterData.name} onChange={handleNameChange}/>
           </label>
         </div>
         <div className='form-group'>
           <label className='flex justify-center' htmlFor="characterBackstory">
             Backstory:
-            <textarea id='characterBackstory' name='backstory' className='form-input mb-5 ml-2 py-0 px-1 dark:text-black' rows="4" cols="29" value={characterData.backstory} onChange={(e) => setCharacterData(e.target.value)}></textarea>
+            <textarea id='characterBackstory' name='backstory' className='form-input mb-5 ml-2 py-0 px-1 dark:text-black' rows="4" cols="29" value={characterData.backstory} onChange={handleBackstoryChange}></textarea>
           </label>
         </div>
       </div>
