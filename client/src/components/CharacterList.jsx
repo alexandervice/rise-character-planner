@@ -30,8 +30,8 @@ const CharacterList = (props) => {
               <td className='py-2 px-3 dark:text-white'>{character.name}</td>
               <td className='py-2 px-3 dark:text-white'>{character.race}</td>
               <td className='py-2 px-3 dark:text-white'>{character.background}</td>
-              <td className='py-2 px-3 dark:text-white'>{character.specializations}</td>
-              <td className='py-2 px-3 dark:text-white'>{character.talents}</td>
+              <td className='py-2 px-3 dark:text-white'>{character.specializations[0]} | {character.specializations[1]}</td>
+              <td className='py-2 px-3 dark:text-white'>{character.talents[0]} | {character.talents[1]}</td>
               <td className='py-2 px-3'>
                 <Link className='mr-3' to={`/${user._id}/characters/${character._id}`}><button className='bg-green-200 hover:bg-green-300 rounded px-1 border-solid border-2 border-green-400'>View</button></Link>
                 <Link className='mr-3' to={`/${user._id}/characters/edit/${character._id}`}><button className='bg-blue-200 hover:bg-blue-300 rounded px-1 border-solid border-2 border-blue-400'>Edit</button></Link>

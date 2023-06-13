@@ -3,11 +3,13 @@ import axios from "axios"
 import CancelButton from './CancelButton';
 import Stepper from 'react-stepper-horizontal';
 import Race from './steps/race';
+import Background from './steps/background';
+import Specializations from './steps/specializations';
 
 const CharacterForm= (props) => {
   const {placeholderCharacter, onSubmission, errors} = props;
   const [ characterData, setCharacterData ] = useState(placeholderCharacter);
-  const [ activeStep, setActiveStep ] = useState(0);
+  const [ activeStep, setActiveStep ] = useState(2);
   const [allRaces, setAllRaces] = useState([]);
   const [allBackgrounds, setAllBackgrounds] = useState([]);
   const [allSpecializations, setAllSpecializations] = useState([]);
@@ -84,7 +86,7 @@ const CharacterForm= (props) => {
         {errors.map((err, index) => 
         <p className='error' key={index}>{err}</p>
         )}
-        <div className='form-group'>
+        {/* <div className='form-group'>
           <label htmlFor="characterName">
             Character Name:
             <input type="text" required id='characterName' name='name' className='form-input mb-5 ml-2 py-0 px-1 dark:text-black' value={characterData.name} onChange={(e) => setCharacterData(e.target.value)}/>
@@ -95,16 +97,24 @@ const CharacterForm= (props) => {
             Backstory:
             <textarea id='characterBackstory' name='backstory' className='form-input mb-5 ml-2 py-0 px-1 dark:text-black' rows="4" cols="29" value={characterData.backstory} onChange={(e) => setCharacterData(e.target.value)}></textarea>
           </label>
-        </div>
+        </div> */}
             <div>
               <Stepper 
               steps={ steps } 
               activeStep={ activeStep }
               activeColor="#EAB306"
               activeTitleColor="#EAB306"
-              defaultTitleColor=""
-              circleFontColor="#18181B"/>
-              [<Race allRaces={allRaces} characterData={characterData} setCharacterData={setCharacterData}/>]
+              defaultTitleColor="#FFFFFF"
+              defaultColor="#FFFFFF"
+              circleFontColor="#18181B"
+              completeTitleColor="#848884"
+              completeColor="#848884"/>
+              <div className='py-5'>
+                {activeStep === 0 && <Race allRaces={allRaces} characterData={characterData} setCharacterData={setCharacterData}/>}
+                {activeStep === 1 && <Background allBackgrounds={allBackgrounds} characterData={characterData} setCharacterData={setCharacterData}/>}
+                {activeStep === 2 && <Specializations allSpecializations={allSpecializations} characterData={characterData} setCharacterData={setCharacterData}/>}
+              </div>
+              
               <button className='bg-blue-200 hover:bg-blue-300 rounded px-1 border-solid border-2 border-blue-400 text-black my-5'>Next</button>
             </div>
         <div className='formButtons text-black'>
