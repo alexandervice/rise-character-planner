@@ -2,14 +2,15 @@ import React, { useState, useEffect } from 'react';
 import axios from "axios"
 import CancelButton from './CancelButton';
 import Stepper from 'react-stepper-horizontal';
-import Race from './steps/race';
-import Background from './steps/background';
-import Specializations from './steps/specializations';
+import Race from './steps/Race';
+import Background from './steps/Background';
+import Specializations from './steps/Specializations';
+
 
 const CharacterForm= (props) => {
   const {placeholderCharacter, onSubmission, errors} = props;
   const [ characterData, setCharacterData ] = useState(placeholderCharacter);
-  const [ activeStep, setActiveStep ] = useState(2);
+  const [ activeStep, setActiveStep ] = useState(0);
   const [allRaces, setAllRaces] = useState([]);
   const [allBackgrounds, setAllBackgrounds] = useState([]);
   const [allSpecializations, setAllSpecializations] = useState([]);
@@ -98,29 +99,29 @@ const CharacterForm= (props) => {
             <textarea id='characterBackstory' name='backstory' className='form-input mb-5 ml-2 py-0 px-1 dark:text-black' rows="4" cols="29" value={characterData.backstory} onChange={(e) => setCharacterData(e.target.value)}></textarea>
           </label>
         </div> */}
-            <div>
-              <Stepper 
-              steps={ steps } 
-              activeStep={ activeStep }
-              activeColor="#EAB306"
-              activeTitleColor="#EAB306"
-              defaultTitleColor="#FFFFFF"
-              defaultColor="#FFFFFF"
-              circleFontColor="#18181B"
-              completeTitleColor="#848884"
-              completeColor="#848884"/>
-              <div className='py-5'>
-                {activeStep === 0 && <Race allRaces={allRaces} characterData={characterData} setCharacterData={setCharacterData}/>}
-                {activeStep === 1 && <Background allBackgrounds={allBackgrounds} characterData={characterData} setCharacterData={setCharacterData}/>}
-                {activeStep === 2 && <Specializations allSpecializations={allSpecializations} characterData={characterData} setCharacterData={setCharacterData}/>}
-              </div>
-              
-              <button className='bg-blue-200 hover:bg-blue-300 rounded px-1 border-solid border-2 border-blue-400 text-black my-5'>Next</button>
+          <div>
+            <Stepper 
+            steps={ steps } 
+            activeStep={ activeStep }
+            activeColor="#EAB306"
+            activeTitleColor="#EAB306"
+            defaultTitleColor="#FFFFFF"
+            defaultColor="#FFFFFF"
+            circleFontColor="#18181B"
+            completeTitleColor="#848884"
+            completeColor="#848884"/>
+            <div className='py-5'>
+              {activeStep === 0 && <Race allRaces={allRaces} characterData={characterData} setCharacterData={setCharacterData} activeStep={activeStep} setActiveStep={setActiveStep}/>}
+              {activeStep === 1 && <Background allBackgrounds={allBackgrounds} characterData={characterData} setCharacterData={setCharacterData} activeStep={activeStep} setActiveStep={setActiveStep}/>}
+              {activeStep === 2 && <Specializations allSpecializations={allSpecializations} characterData={characterData} setCharacterData={setCharacterData} activeStep={activeStep} setActiveStep={setActiveStep}/>}
+              {activeStep === 3 && <Specializations allSpecializations={allSpecializations} characterData={characterData} setCharacterData={setCharacterData} activeStep={activeStep} setActiveStep={setActiveStep}/>}
+              {activeStep === 4 && <Specializations allSpecializations={allSpecializations} characterData={characterData} setCharacterData={setCharacterData} activeStep={activeStep} setActiveStep={setActiveStep}/>}
             </div>
-        <div className='formButtons text-black'>
-          <CancelButton/>
-          <input className='bg-green-200 hover:bg-green-300 rounded px-1 border-solid border-2 border-green-400 dark:text-black' type="submit"/>
-        </div>
+          </div>
+          <div className='formButtons text-black'>
+            <CancelButton/>
+            <input className='bg-green-200 hover:bg-green-300 rounded px-1 border-solid border-2 border-green-400 dark:text-black' type="submit"/>
+          </div>
       </form>
     </div>
   )

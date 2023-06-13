@@ -1,7 +1,8 @@
 import React, {useState} from 'react';
+import StepButtons from './StepButtons';
 
 const Specializations = (props) => {
-  const {allSpecializations, characterData, setCharacterData} = props
+  const {allSpecializations, characterData, setCharacterData, activeStep, setActiveStep} = props
   const [hovered, setHovered] = useState(null);
 
   const handleSpecializationSelection = (selected) => {
@@ -33,19 +34,23 @@ const Specializations = (props) => {
 
 
   return (
-    <div className="flex bg-zinc-800 rounded flex-wrap justify-center py-5">
-      <p className='text-xl pb-5'>Please select up to two of the following Specializations. Your Specializations represent your desired playstyle and greatly influence your combat abilities. Please see the documentation page for more details.</p>
-      {allSpecializations.map((specialization, index) => (
-        <div key={index} className={`m-4  ${characterData.specializations.includes(specialization) ? 'border-4 border-blue-500' : ''}`} onClick={() => handleSpecializationSelection(specialization)} onMouseEnter={() => setHovered(specialization)} onMouseLeave={() => setHovered(null)}>
-          <img src={`/images/specializations/${specialization.name}`} alt={specialization.name} className="cursor-pointer w-40 h-40" />
-          <p className="text-center text-xl my-2">{specialization.name}</p>
-          {hovered === specialization && (
-          <div className="absolute left-1/2 transform -translate-x-1/2 bg-zinc-900 p-4 rounded">
-            <p className="text-center text-sm ">{specialization.description}</p>
+    <div className='bg-zinc-800 rounded py-5'>
+      <StepButtons activeStep={activeStep} setActiveStep={setActiveStep} />
+      <div className="flex bg-zinc-800 rounded flex-wrap justify-center py-5">
+        <p className='text-xl pb-5'>Please select up to two of the following Specializations. Your Specializations represent your desired playstyle and greatly influence your combat abilities. Please see the documentation page for more details.</p>
+        {allSpecializations.map((specialization, index) => (
+          <div key={index} className={`m-4  ${characterData.specializations.includes(specialization) ? 'border-4 border-blue-500' : ''}`} onClick={() => handleSpecializationSelection(specialization)} onMouseEnter={() => setHovered(specialization)} onMouseLeave={() => setHovered(null)}>
+            <img src={`/images/specializations/${specialization.name}`} alt={specialization.name} className="cursor-pointer w-40 h-40" />
+            <p className="text-center text-xl my-2">{specialization.name}</p>
+            {hovered === specialization && (
+            <div className="absolute left-1/2 transform -translate-x-1/2 bg-zinc-900 p-4 rounded">
+              <p className="text-center text-sm ">{specialization.description}</p>
+            </div>
+            )}
           </div>
-          )}
-        </div>
-      ))}
+        ))}
+      </div>
+      <StepButtons activeStep={activeStep} setActiveStep={setActiveStep} />
     </div>
   );
 }

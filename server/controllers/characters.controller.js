@@ -5,9 +5,9 @@ module.exports = {
   createCharacter: async (req, res) => {
     try {
       const { userId } = req.params;
-      // const { name, race, background, specializations, talents } = req.body;
+      const { name, race, background, specializations, talents } = req.body;
       // const img = req.file.path;
-      const { name } = req.body;
+      // const { name } = req.body;
       // const img = ""
       // races = []
 
@@ -20,10 +20,10 @@ module.exports = {
       const character = {
         name,
         // img,
-        // race,
-        // background,
-        // specializations,
-        // talents
+        race,
+        background,
+        specializations,
+        talents
       };
 
       // Add the character to the user's characters array
