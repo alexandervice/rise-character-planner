@@ -3,7 +3,8 @@ module.exports = {
   content: [
     "./src/components/*.{js,jsx}",
     "./src/views/*.{js,jsx}",
-    "./src/*.{js,jsx,html}"
+    "./src/*.{js,jsx,html}",
+    "./src/components/steps/*.{js,jsx,html}"
   ],
   darkMode: "class",
   theme: {

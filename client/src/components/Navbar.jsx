@@ -16,20 +16,20 @@ const Navbar = (props) => {
         <h1 className="text-yellow-500 font-bold text-3xl">
           RISE Character Planner
         </h1>
-        <div className="space-x-4">
-          <Link to="/documentation" className="text-zinc-700 hover:text-black dark:text-white hover:text-gray-300 ">
+        <div className="space-x-4 flex items-center">
+          <Link to="/documentation" className="text-zinc-700 dark:text-white ">
             <FiHome className="inline-block mr-1" />
             Documentation
           </Link>
           { loggedIn ?
-          <Link to={`/${user._id}/characters`} className="text-zinc-700 hover:text-black dark:text-white hover:text-gray-300">
-          <FiUser className="inline mr-1" />
-          My Characters
-        </Link>:
+          <Link to={`/${user._id}/characters`} className="text-zinc-700 dark:text-white ">
+            <FiUser className="inline mr-1" />
+            My Characters
+          </Link>:
           <div className='inline mr-1'/>}
           
           
-          {/* <Link to="/settings" className="text-zinc-700 hover:text-black dark:text-white hover:text-gray-300">
+          {/* <Link to="/settings" className="text-zinc-700 dark:text-white ">
             <FiSettings className="inline mr-1" />
             Settings
           </Link> */}

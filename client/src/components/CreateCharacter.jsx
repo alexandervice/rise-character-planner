@@ -7,6 +7,15 @@ const CreateCharacter = (props) => {
   const [errors, setErrors] = useState([]);
   const navigate = useNavigate();
   const user = JSON.parse(localStorage.getItem("user"))
+  const newCharacter = {
+    name: "",
+    img: "",
+    backstory: "",
+    race: "",
+    background: "",
+    specializations: [],
+    talents: []
+  }
 
   const createCharacter = characterData => {
     axios.post(`http://localhost:8000/api/users/${user._id}/characters/create`, characterData)
@@ -31,7 +40,7 @@ const CreateCharacter = (props) => {
     <div>
       <h3 className=' font-bold text-3xl mb-3'>Create New Character:</h3>
       <div>
-        <CharacterForm onSubmission={createCharacter} placeholderName={""} errors={errors}/>
+        <CharacterForm onSubmission={createCharacter} placeholderCharacter={newCharacter} errors={errors}/>
       </div>
     </div>
   )

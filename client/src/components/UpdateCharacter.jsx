@@ -7,7 +7,7 @@ const UpdateCharacter = (props) => {
   const { characterId } = useParams();
   const [character, setCharacter] = useState({});
   const [errors, setErrors] = useState([]);
-  const [loaded, setLoaded] =useState(false)
+  const [loaded, setLoaded] = useState(false)
   const user = JSON.parse(localStorage.getItem("user"))
 
   const navigate = useNavigate();
@@ -48,7 +48,7 @@ const UpdateCharacter = (props) => {
       <h3 className=' font-bold text-3xl mb-3'>Edit Character:</h3>
       {loaded? 
       <div>
-        <CharacterForm onSubmission={updateCharacter} placeholderName={character.name} placeholderDetails={character.details} errors={errors}/>
+        <CharacterForm onSubmission={updateCharacter} placeholderCharacter={character} errors={errors}/>
       </div>:
       <div>
         <p>"We're sorry, but we could not find the character you are looking for. Would you like to create a new character?"</p>
