@@ -20,6 +20,7 @@ const CreateCharacter = (props) => {
   const createCharacter = characterData => {
     axios.post(`http://localhost:8000/api/users/${user._id}/characters/create`, characterData)
       .then(res=>{
+        console.log(characterData)
         console.log(res);
         navigate(`/${user._id}/characters`);
       })

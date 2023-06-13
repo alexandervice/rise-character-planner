@@ -1,10 +1,12 @@
 import React, { useState, useEffect } from 'react';
 import axios from "axios"
-import CancelButton from './CancelButton';
+// import CancelButton from './CancelButton';
 import Stepper from 'react-stepper-horizontal';
 import Race from './steps/Race';
 import Background from './steps/Background';
 import Specializations from './steps/Specializations';
+import Talents from './steps/Talents';
+import Final from './steps/Final';
 
 
 const CharacterForm= (props) => {
@@ -87,18 +89,6 @@ const CharacterForm= (props) => {
         {errors.map((err, index) => 
         <p className='error' key={index}>{err}</p>
         )}
-        {/* <div className='form-group'>
-          <label htmlFor="characterName">
-            Character Name:
-            <input type="text" required id='characterName' name='name' className='form-input mb-5 ml-2 py-0 px-1 dark:text-black' value={characterData.name} onChange={(e) => setCharacterData(e.target.value)}/>
-          </label>
-        </div>
-        <div className='form-group'>
-          <label className='flex justify-center' htmlFor="characterBackstory">
-            Backstory:
-            <textarea id='characterBackstory' name='backstory' className='form-input mb-5 ml-2 py-0 px-1 dark:text-black' rows="4" cols="29" value={characterData.backstory} onChange={(e) => setCharacterData(e.target.value)}></textarea>
-          </label>
-        </div> */}
           <div>
             <Stepper 
             steps={ steps } 
@@ -114,14 +104,11 @@ const CharacterForm= (props) => {
               {activeStep === 0 && <Race allRaces={allRaces} characterData={characterData} setCharacterData={setCharacterData} activeStep={activeStep} setActiveStep={setActiveStep}/>}
               {activeStep === 1 && <Background allBackgrounds={allBackgrounds} characterData={characterData} setCharacterData={setCharacterData} activeStep={activeStep} setActiveStep={setActiveStep}/>}
               {activeStep === 2 && <Specializations allSpecializations={allSpecializations} characterData={characterData} setCharacterData={setCharacterData} activeStep={activeStep} setActiveStep={setActiveStep}/>}
-              {activeStep === 3 && <Specializations allSpecializations={allSpecializations} characterData={characterData} setCharacterData={setCharacterData} activeStep={activeStep} setActiveStep={setActiveStep}/>}
-              {activeStep === 4 && <Specializations allSpecializations={allSpecializations} characterData={characterData} setCharacterData={setCharacterData} activeStep={activeStep} setActiveStep={setActiveStep}/>}
+              {activeStep === 3 && <Talents allTalents={allTalents} characterData={characterData} setCharacterData={setCharacterData} activeStep={activeStep} setActiveStep={setActiveStep}/>}
+              {activeStep === 4 && <Final characterData={characterData} setCharacterData={setCharacterData} activeStep={activeStep} setActiveStep={setActiveStep}/>}
             </div>
           </div>
-          <div className='formButtons text-black'>
-            <CancelButton/>
-            <input className='bg-green-200 hover:bg-green-300 rounded px-1 border-solid border-2 border-green-400 dark:text-black' type="submit"/>
-          </div>
+          
       </form>
     </div>
   )

@@ -28,8 +28,6 @@ const Talents = (props) => {
     }
   
     setCharacterData(data => ({ ...data, talents: updatedTalents }));
-    console.log(updatedTalents)
-    console.log(characterData)
   };
 
 
@@ -40,7 +38,7 @@ const Talents = (props) => {
         <p className='text-xl pb-5'>Please select up to two of the following Talents. Your Talents are generally the noncombat skills you wish to learn. Please see the documentation page for more details.</p>
         {allTalents.map((talent, index) => (
           <div key={index} className={`m-4  ${characterData.talents.includes(talent) ? 'border-4 border-blue-500' : ''}`} onClick={() => handleTalentSelection(talent)} onMouseEnter={() => setHovered(talent)} onMouseLeave={() => setHovered(null)}>
-            <img src={`/images/specializations/${talent.name}`} alt={talent.name} className="cursor-pointer w-40 h-40" />
+            <img src={`/images/talents/${talent.image[0]}.jpg`} alt={talent.name} className="cursor-pointer w-40 h-40" />
             <p className="text-center text-xl my-2">{talent.name}</p>
             {hovered === talent && (
             <div className="absolute left-1/2 transform -translate-x-1/2 bg-zinc-900 p-4 rounded">

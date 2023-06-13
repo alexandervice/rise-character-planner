@@ -28,8 +28,6 @@ const Specializations = (props) => {
     }
   
     setCharacterData(data => ({ ...data, specializations: updatedSpecializations }));
-    console.log(updatedSpecializations)
-    console.log(characterData)
   };
 
 
@@ -40,7 +38,7 @@ const Specializations = (props) => {
         <p className='text-xl pb-5'>Please select up to two of the following Specializations. Your Specializations represent your desired playstyle and greatly influence your combat abilities. Please see the documentation page for more details.</p>
         {allSpecializations.map((specialization, index) => (
           <div key={index} className={`m-4  ${characterData.specializations.includes(specialization) ? 'border-4 border-blue-500' : ''}`} onClick={() => handleSpecializationSelection(specialization)} onMouseEnter={() => setHovered(specialization)} onMouseLeave={() => setHovered(null)}>
-            <img src={`/images/specializations/${specialization.name}`} alt={specialization.name} className="cursor-pointer w-40 h-40" />
+            <img src={`/images/specializations/${specialization.image[0]}.jpg`} alt={specialization.name} className="cursor-pointer w-40 h-40" />
             <p className="text-center text-xl my-2">{specialization.name}</p>
             {hovered === specialization && (
             <div className="absolute left-1/2 transform -translate-x-1/2 bg-zinc-900 p-4 rounded">
