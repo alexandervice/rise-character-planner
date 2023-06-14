@@ -13,11 +13,11 @@ const CharacterForm= (props) => {
   const {placeholderCharacter, onSubmission, errors} = props;
   const [ characterData, setCharacterData ] = useState(placeholderCharacter);
   const [ activeStep, setActiveStep ] = useState(0);
+  const loggedIn = props.loggedIn
   const [allRaces, setAllRaces] = useState([]);
   const [allBackgrounds, setAllBackgrounds] = useState([]);
   const [allSpecializations, setAllSpecializations] = useState([]);
   const [allTalents, setAllTalents] = useState([]);
-  const loggedIn = props.loggedIn
 
   useEffect(() => {
     fetchRaceData();

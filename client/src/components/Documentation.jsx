@@ -64,8 +64,11 @@ const Documentation = (props) => {
   const renderRaceData = () => {
     return races.map((item, index)=> (
       <tr key={index}  className=' hover:bg-zinc-500'>
+        <td className='py-2 px-3 border border-slate-200'>
+          <img src={`/images/races/${item.image[0]}.jpg`} alt={`${item.name}`} />
+        </td>
         <td className='py-2 px-3 border border-slate-200'>{item.name}</td>
-        <td className='py-2 px-3 border border-slate-200'>{item.description}</td>
+        <td className='py-2 px-3 border border-slate-200 text-sm'>{item.description}</td>
       </tr>
       ))
   };
@@ -107,8 +110,9 @@ const Documentation = (props) => {
     return (
       <table className='table-auto border border-slate-500'>
         {/* Render table1 header */}
-        <thead>
+        <thead className='text-xl'>
           <tr>
+            <th className='border py-5 dark:border-slate-200 dark:bg-zinc-700'>Image</th>
             <th className='border py-5 dark:border-slate-200 dark:bg-zinc-700'>Name</th>
             <th className='border dark:border-slate-200 dark:bg-zinc-700'>Description</th>
           </tr>
