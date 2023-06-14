@@ -1,5 +1,6 @@
 import React, {useState} from 'react';
 import StepButtons from './StepButtons';
+const lodash = require("lodash");
 
 const Talents = (props) => {
   const {allTalents, characterData, setCharacterData, activeStep, setActiveStep} = props
@@ -9,7 +10,7 @@ const Talents = (props) => {
     const currentTalents = characterData.talents;
     
     // Check if the selected talent is already in the array
-    const index = currentTalents.indexOf(selected);
+    const index = lodash.findIndex(currentTalents, (spec) => lodash.isEqual(spec, selected));
     
     let updatedTalents;
   
@@ -36,8 +37,14 @@ const Talents = (props) => {
       <StepButtons activeStep={activeStep} setActiveStep={setActiveStep} />
       <div className="flex bg-zinc-800 rounded flex-wrap justify-center py-5">
         <p className='text-xl pb-5'>Please select up to two of the following Talents. Your Talents are generally the noncombat skills you wish to learn. Please see the documentation page for more details.</p>
-        {allTalents.map((talent, index) => (
-          <div key={index} className={`m-4  ${characterData.talents.includes(talent) ? 'border-4 border-blue-500' : ''}`} onClick={() => handleTalentSelection(talent)} onMouseEnter={() => setHovered(talent)} onMouseLeave={() => setHovered(null)}>
+
+        {allTalents.map((talent, index) => {
+          // const hasMatchingTalent = characterData.talents.some(
+          //   (tal) => tal._id === talent._id
+          // );
+        
+        return (
+          <div key={index} className={`m-4  ${lodash.find(characterData.talents, talent) ? 'border-4 border-blue-500' : ''}`} onClick={() => handleTalentSelection(talent)} onMouseEnter={() => setHovered(talent)} onMouseLeave={() => setHovered(null)}>
             <img src={`/images/talents/${talent.image[0]}.jpg`} alt={talent.name} className="cursor-pointer w-40 h-40" />
             <p className="text-center text-xl my-2">{talent.name}</p>
             {hovered === talent && (
@@ -46,7 +53,7 @@ const Talents = (props) => {
             </div>
             )}
           </div>
-        ))}
+        )})}
       </div>
       <StepButtons activeStep={activeStep} setActiveStep={setActiveStep} />
     </div>

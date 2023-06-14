@@ -28,10 +28,12 @@ const UpdateCharacter = (props) => {
   const updateCharacter = characterData => {
     axios.patch(`http://localhost:8000/api/users/${user._id}/characters/update/${characterId}`, characterData)
       .then(res => {
+        console.log(characterData)
         console.log(res);
-        navigate(`/${user._id}/characters/${res.data.character._id}`);
+        navigate(`/${user._id}/characters/${characterId}`);
       })
       .catch(err => {
+        // console.log(characterData)
         console.log(err)
         const errorResponse = err.response.data.errors;
         const errorArray = [];

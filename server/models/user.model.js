@@ -30,7 +30,7 @@ const CharacterSchema = new mongoose.Schema({
   backstory: {
     type: String
   }
-}, {timestamps: true})
+}, {timestamps: true});
 
 
 const UserSchema = new mongoose.Schema({
@@ -71,12 +71,18 @@ UserSchema.pre('validate', function (next) {
 });
 
 // Middleware to hash the password
-UserSchema.pre('save', function (next) {
-  bcrypt.hash(this.password, 10)
-      .then(hash => {
-          this.password = hash;
-          next();
-      });
+UserSchema.pre('save', async function (next) {
+  if (!this.isModified('password')) {
+    return next();
+  }
+
+  try {
+    const hash = await bcrypt.hash(this.password, 10);
+    this.password = hash;
+    next();
+  } catch (error) {
+    next(error);
+  }
 });
 
 

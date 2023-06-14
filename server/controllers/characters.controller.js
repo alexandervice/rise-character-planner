@@ -8,9 +8,6 @@ module.exports = {
       const { name, race, background, specializations, talents, backstory } = req.body.characterData;
       // console.log(req.body)
       // const img = req.file.path;
-      // const { name } = req.body;
-      // const img = ""
-      // races = []
 
       const user = await User.findById(userId);
       if (!user) {
@@ -65,7 +62,16 @@ module.exports = {
     try {
       const { userId, characterId } = req.params;
 
-      const user = await User.findById(userId);
+      const user = await User.findById(userId).populate({
+        path: 'characters',
+        match: { _id: characterId },
+        populate: [
+          { path: 'race', model: 'Races' },
+          { path: 'background', model: 'Backgrounds' },
+          { path: 'specializations', model: 'Specializations' },
+          { path: 'talents', model: 'Talents' }
+        ]
+      });
       if (!user) {
         return res.status(404).json({ error: 'User not found' });
       }
@@ -74,7 +80,7 @@ module.exports = {
       if (!character) {
         return res.status(404).json({ error: 'Character not found' });
       }
-
+      // console.log(character)
       return res.status(200).json({ character });
     } catch (error) {
       console.error(error);
@@ -84,10 +90,17 @@ module.exports = {
 
   // Update a specific character for a user
   updateCharacter: async (req, res) => {
+    // const { userId, characterId } = req.params;
+    // console.log(req.body)
+    // User.findOneAndUpdate({ _id: userId, "characters._id" : `${characterId}` }, { $set : {"characters.$" : req.body}}, { new: true, validateBeforeSave: false })
+    //   .then(updatedCharacter => res.json({updatedCharacter}))
+    //   .catch(err => res.status(400).json(err));
+    
     try {
       const { userId, characterId } = req.params;
-      const { name, race, background, specializations, talents, backstory } = req.body;
-      const img = req.file.path
+      const { name, race, background, specializations, talents, backstory } = req.body.characterData;
+      // const img = req.file.path
+      // console.log(req.body);
 
       const user = await User.findById(userId);
       if (!user) {
@@ -101,7 +114,7 @@ module.exports = {
 
       // Update the character fields
       character.name = name;
-      character.img = img;
+      // character.img = img;
       character.race = race;
       character.background = background;
       character.specializations = specializations;
@@ -110,8 +123,9 @@ module.exports = {
 
       // Save the updated user document
       await user.save({ validateBeforeSave: false });
-
+      console.log(character)
       return res.status(200).json({ character });
+      
     } catch (error) {
       console.error(error);
       return res.status(500).json({ error: 'Server error' });
