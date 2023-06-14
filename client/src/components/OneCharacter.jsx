@@ -15,168 +15,133 @@ const OneCharacter = (props) => {
 
   const [loading, setLoading] = useState(true);
 
-  const [allRaces, setAllRaces] = useState([]);
-  const [allBackgrounds, setAllBackgrounds] = useState([]);
-  const [allSpecializations, setAllSpecializations] = useState([]);
-  const [allTalents, setAllTalents] = useState([]);
 
-  
-
-  const fetchRaceData = async () => {
+  const fetchData = async (endpoint, setData) => {
     try {
-      const response = await axios.get('http://localhost:8000/api/races/find/all');
-      setAllRaces(response.data.races);
+      const response = await axios.get(endpoint);
+      setData(response.data);
     } catch (error) {
-      console.error('Error fetching data for races:', error);
-    }
-  };
-
-  const fetchBackgroundData = async () => {
-    try {
-      const response = await axios.get('http://localhost:8000/api/backgrounds/find/all');
-      setAllBackgrounds(response.data.backgrounds);
-    } catch (error) {
-      console.error('Error fetching data for backgrounds:', error);
-    }
-  };
-
-  const fetchSpecializationData = async () => {
-    try {
-      const response = await axios.get('http://localhost:8000/api/specializations/find/all');
-      setAllSpecializations(response.data.specializations);
-    } catch (error) {
-      console.error('Error fetching data for specializations:', error);
-    }
-  };
-
-  const fetchTalentData = async () => {
-    try {
-      const response = await axios.get('http://localhost:8000/api/talents/find/all');
-      setAllTalents(response.data.talents);
-    } catch (error) {
-      console.error('Error fetching data for talents:', error);
-    }
-  };
-
-  const getRaceById = (raceId) => {
-    const race = allRaces.find((race) => race._id === raceId);
-    setRace(race);
-  };
-
-  const getBackgroundById = (backgroundId) => {
-    const background = allBackgrounds.find((background) => background._id === backgroundId);
-    setBackground(background);
-  };
-
-  const getSpecializationsByIds = (specializationIds) => {
-    if (!specializationIds) {
-      setSpecializations([]);
-      return;
-    }
-    const specializations = specializationIds.map((id) =>
-      allSpecializations.find((specialization) => specialization._id === id)
-    );
-    setSpecializations(specializations);
-  };
-
-  const getTalentsByIds = (talentIds) => {
-    if (!talentIds) {
-      setSpecializations([]);
-      return;
-    }
-    const talents = talentIds.map((id) =>
-      allTalents.find((talent) => talent._id === id)
-    );
-    setTalents(talents);
+      console.error('Error fetching data:', error);
+    } 
   };
   
 
   useEffect(() => {
-    axios.get(`http://localhost:8000/api/users/${user._id}/characters/find/${characterId}`)
-      .then( res => {
-        // console.log(res.data.character);
-        setCharacter(res.data.character);
-      })
-      .catch( err=>console.log(err) );
-    // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, []);
-
-  useEffect(() => {
-    const fetchData = async () => {
+    const fetchCharacterData = async () => {
       try {
         const characterResponse = await axios.get(
           `http://localhost:8000/api/users/${user._id}/characters/find/${characterId}`
         );
         setCharacter(characterResponse.data.character);
-
-        await fetchRaceData();
-        await fetchBackgroundData();
-        await fetchSpecializationData();
-        await fetchTalentData();
+        setLoading(false); // Update loading state here since character data is fetched
       } catch (error) {
         console.error("Error fetching character data:", error);
-      } finally {
-        setLoading(false);
       }
     };
 
-    fetchData();
-    getRaceById(character.race);
-    getBackgroundById(character.background);
-    getSpecializationsByIds(character.specializations)
-    getTalentsByIds(character.talents)
-    // Fetch data for additional info
+    fetchCharacterData();
   }, [characterId, user._id]);
 
-  if (loading) {
-    return <div>Loading...</div>;
-  }
+  useEffect(() => {
+    
+    const fetchAllData = async () => {
+      try {
+        const promises = [];
+        if (Object.keys(character).length > 0) {
+          promises.push(
+            fetchData(`http://localhost:8000/api/races/find/${character.race}`, setRace),
+            fetchData(`http://localhost:8000/api/backgrounds/find/${character.background}`, setBackground),
+          );
+          }
 
+        if (character.specializations && character.specializations.length > 0) {
+          // Fetch data for each specialization ID in the array
+          character.specializations.forEach((specializationId) => {
+            promises.push(fetchData(`http://localhost:8000/api/specializations/find/${specializationId}`, (data) => {
+              setSpecializations((prevSpecializations) => [...prevSpecializations, data]);
+            }));
+          });
+        }
+        if (character.talents && character.talents.length > 0) {
+          // Fetch data for each talent ID in the array
+          character.talents.forEach((talentId) => {
+            promises.push(fetchData(`http://localhost:8000/api/talents/find/${talentId}`, (data) => {
+              setTalents((prevTalents) => [...prevTalents, data]);
+            }));
+          });
+        }
+        await Promise.all(promises);
+      } catch (error) {
+        console.error("Error fetching additional data:", error);
+      }
+    };
+
+    fetchAllData();
+  }, [character]);
+
+  console.log(race.race)
   return (
+    loading? (<div>Loading...</div>) : (
     <div>
       <div className="p-5 flex flex-col dark:bg-zinc-900 flex-wrap justify-center">
-        <h1 className="text-3xl font-bold mb-5">{character.name}</h1>
-        <img src={`/images/characters/${character.img}`} alt={character.name} className="mb-3 w-40 h-40" />
-        <div className="mb-3">
-          <strong>Backstory:</strong> {character.backstory}
+        <div>
+          <Link className='characterItem' to={`/${user._id}/characters/edit/${characterId}`}><button className='bg-blue-100 hover:bg-blue-200 rounded px-1 border-solid border-2 mt-5 border-blue-400 mb-5 dark:text-black'>Edit Character</button></Link>
         </div>
-        {race && (
+        <div className="mb-3 m-1 bg-zinc-800 p-5 rounded">
+          <div className="flex p-3 items-center">
+            <div className="flex flex-none flex-col items-center justify-items-center mr-5">
+              <p className="mb-2 text-3xl font-bold">{character.name}</p>
+              <img className="w-64 h-64 rounded " src={`/images/characters/${character.img}`} alt={`${character.name}`} />
+            </div>
+            <p className="text-sm text-left">{character.backstory}</p>
+          </div>
+        </div>
+        {race.race && (
           <div className="mb-3 m-1 bg-zinc-800 p-5 rounded">
-            <strong>Race:</strong> {race.name}
-            <div className="flex p-3">
-              <img className=" w-48 h-48 rounded mr-5" src={`/images/races/${race.image}1.jpg`} alt={`${race.name}`} />
-              <p className="text-sm text-left">{race.description}</p>
+            <div className="flex p-3 items-center">
+              <div className="flex flex-none flex-col items-center justify-items-center mr-5">
+                <p className="mb-2 text-xl font-bold">{race.race.name}</p>
+                <img className="w-40 h-40 rounded " src={`/images/races/${race.race.image[0]}.jpg`} alt={`${race.race.name}`} />
+              </div>
+              <p className="text-sm text-left">{race.race.description}</p>
             </div>
           </div>
-          
         )}
-        {background && (
-          <div className="mb-3">
-            <strong>Background:</strong> {background.name}
+        {background.background && (
+          <div className="mb-3 m-1 bg-zinc-800 p-5 rounded">
+          <div className="flex p-3 items-center">
+            <div className="flex flex-none flex-col items-center justify-items-center mr-5">
+              <p className="mb-2 text-xl font-bold">{background.background.name}</p>
+              <img className="w-40 h-40 rounded " src={`/images/races/${background.background.image[0]}.jpg`} alt={`${background.background.name}`} />
+            </div>
+            <p className="text-sm text-left">{background.background.description}</p>
           </div>
+        </div>
         )}
         <div className="mb-3">
-        <strong>Specializations:</strong>{" "}
-        {specializations.length > 0 ? (
-          specializations.map((specialization) => (
-            <span key={specialization._id}>{specialization.name} </span>
-          ))
-        ) : (
-          <span>No specializations available</span>
-        )}
+          <strong>Specializations:</strong>{" "}
+          {specializations.length > 0 ? (
+            specializations.map((specialization) => (
+              <span key={specialization._id}>{specialization.name} </span>
+            ))
+          ) : (
+            <span>No specializations available</span>
+          )}
         </div>
         <div className="mb-3">
           <strong>Talents:</strong>{" "}
           {talents.length > 0 ? (
-            talents.map((talent) => <span key={talent._id}>{talent.name} </span>)
+            talents.map((talent) => (
+              <span key={talent._id}>{talent.name} </span>
+            ))
           ) : (
             <span>No talents available</span>
           )}
         </div>
-    </div>
-      <CancelButton/>
+      </div>
       <Link className='characterItem' to={`/${user._id}/characters/edit/${characterId}`}><button className='bg-blue-100 hover:bg-blue-200 rounded px-1 border-solid border-2 mt-5 border-blue-400 mb-5 dark:text-black'>Edit Character</button></Link>
     </div>
+    )
   );
 };
 
