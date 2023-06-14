@@ -1,7 +1,7 @@
 import React, {useEffect, useState} from "react";
 import axios from "axios";
 import {useParams, Link} from "react-router-dom";
-import CancelButton from './CancelButton';
+// import CancelButton from './CancelButton';
 
 const OneCharacter = (props) => {
   const [character, setCharacter] = useState({});
