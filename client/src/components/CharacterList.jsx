@@ -9,6 +9,9 @@ const CharacterList = (props) => {
 
   return (
     <div className='inline-block rounded p-5 bg-zinc-900'>
+      <Link className='mr-3' to={`/${user._id}/characters/create`}>
+        <button className='my-5 bg-yellow-200 hover:bg-yellow-300 rounded px-1 border-solid border-2 border-yellow-400 mb-5 dark:text-black dark:hover:bg-yellow-200 dark:bg-yellow-300 dark:border-yellow-400'>Create a New Character</button>
+      </Link>
       <h3 className='font-bold mb-4 text-4xl'>{user.userName}'s Characters</h3>
       {characterArray.map((character, index) => {
             return (

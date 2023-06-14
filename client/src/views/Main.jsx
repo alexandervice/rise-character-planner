@@ -8,7 +8,7 @@ const Main = (props) => {
   useEffect(()=>{
     axios.get(`http://localhost:8000/api/users/${user._id}/characters`)
       .then((res)=>{
-        console.log(res.data);
+        // console.log(res.data);
         setCharacterArray(res.data.characters);
       })
       .catch(err=>console.log(err))
