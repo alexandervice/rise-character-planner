@@ -4,10 +4,9 @@ const secret = process.env.SECRET_KEY;
 // this is all to enable us to authenticate users and allow or deny them to access cetain pages depending on if they are logged in or not
 module.exports = {
   authenticate: (req, res, next) => {
-    const token = req.cookies.usertoken
+    const token = req.cookies["usertoken"]
     if (!token) {
-      console.log("no token")
-      return next() // bypass the authentication for now
+      console.log(token)
       return res.sendStatus(403);
     }
     try {

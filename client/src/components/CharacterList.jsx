@@ -23,7 +23,7 @@ const CharacterList = (props) => {
                   </div>
                   <p className="text-sm text-left hidden sm:block">{character.backstory}</p>
                 </div>
-                <div className='dark:text-black'>
+                <div className='dark:text-black flex justify-center'>
                   <Link className='mr-3' to={`/${user._id}/characters/${character._id}`}>
                     <button className='bg-green-200 hover:bg-green-300 rounded px-1 border-solid border-2 border-green-400'>View</button>
                   </Link>

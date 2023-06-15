@@ -26,7 +26,7 @@ const UpdateCharacter = (props) => {
   }, [])
 
   const updateCharacter = characterData => {
-    axios.patch(`http://localhost:8000/api/users/${user._id}/characters/update/${characterId}`, characterData)
+    axios.patch(`http://localhost:8000/api/users/${user._id}/characters/update/${characterId}`, characterData, {withCredentials: true})
       .then(res => {
         console.log(characterData)
         console.log(res);

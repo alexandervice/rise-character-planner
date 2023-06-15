@@ -6,7 +6,7 @@ const Main = (props) => {
   const user = JSON.parse(localStorage.getItem("user"))
   
   useEffect(()=>{
-    axios.get(`http://localhost:8000/api/users/${user._id}/characters`)
+    axios.get(`http://localhost:8000/api/users/${user._id}/characters`, {withCredentials: true})
       .then((res)=>{
         // console.log(res.data);
         setCharacterArray(res.data.characters);

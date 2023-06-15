@@ -13,9 +13,7 @@ const OneCharacter = (props) => {
   useEffect(() => {
     const fetchCharacterData = async () => {
       try {
-        const characterResponse = await axios.get(
-          `http://localhost:8000/api/users/${user._id}/characters/find/${characterId}`
-        );
+        const characterResponse = await axios.get(`http://localhost:8000/api/users/${user._id}/characters/find/${characterId}`, {withCredentials: true});
         setCharacter(characterResponse.data.character);
         setLoading(false); // Update loading state for character data here
       } catch (error) {

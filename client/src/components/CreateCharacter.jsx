@@ -18,7 +18,7 @@ const CreateCharacter = (props) => {
   }
 
   const createCharacter = characterData => {
-    axios.post(`http://localhost:8000/api/users/${user._id}/characters/create`, characterData)
+    axios.post(`http://localhost:8000/api/users/${user._id}/characters/create`, characterData, {withCredentials: true})
       .then(res=>{
         console.log(characterData)
         console.log(res);
