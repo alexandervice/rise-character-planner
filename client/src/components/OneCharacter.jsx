@@ -9,6 +9,10 @@ const OneCharacter = (props) => {
   const user = JSON.parse(localStorage.getItem("user"))
   const [loading, setLoading] = useState(true);
 
+  const handleImageError = (event) => {
+    event.target.onerror = null; // Remove the event listener to avoid potential infinite loop
+    event.target.src = '/images/characters/placeholder.jpg'; // Set the source of the image to the placeholder image
+  };
 
   useEffect(() => {
     const fetchCharacterData = async () => {
@@ -38,16 +42,16 @@ const OneCharacter = (props) => {
           <div className="sm:flex p-3 items-center">
             <div className="flex flex-none flex-col items-center justify-items-center mr-5">
               <p className="mb-2 text-3xl font-bold">{character.name}</p>
-              <img className="w-40 h-40 sm:w-64 sm:h-64 rounded " src={`/images/characters/1onHPwMMRaG-Rttomzb4MSXXpP6nkdV-TVQXn7YpG.png`} alt={`${character.img}`} />
+              <img className="w-40 h-40 sm:w-64 sm:h-64 rounded " src={`/images/characters/${character.img}`} alt={`${character.img}`} onError={handleImageError}/>
             </div>
             <p className="text-sm text-left hidden sm:block">{character.backstory}</p>
           </div>
         </div>
         {character.race && (
           <div className="mb-3 m-1 bg-zinc-800 p-5 rounded">
-            <div className="flex items-start border-b border-zinc-400 pb-2">
-              <p className="mx-3 text-lg align-top">Race: </p>
-              <p className="text-zinc-400 text-start text-xs">This is your character's species. It determines your starting HP, MP, and Movement Speed. Each Race also grants Focus options, Attribute bonuses, and unique racial powers.</p>
+            <div className="flex items-center border-b border-zinc-400 pb-2">
+              <p className="mx-3 text-lg self-start">Race: </p>
+              <p className="text-zinc-400 text-start text-xs">This is your character's species. It determines your starting HP, MP, and Movement Speed. Each race also grants focus options, attribute bonuses, and unique racial powers.</p>
             </div>
             <div className="sm:flex p-3 items-center">
               <div className="flex flex-none flex-col items-center justify-items-center mr-5">
@@ -62,7 +66,7 @@ const OneCharacter = (props) => {
           <div className="mb-3 m-1 bg-zinc-800 p-5 rounded">
             <div className="flex items-start border-b border-zinc-400 pb-2">
               <p className="mx-3  text-lg">Background: </p>
-              <p className="text-zinc-400 text-start text-xs">This is your character's species. It determines your starting HP, MP, and Movement Speed. Each Race also grants Focus options, Attribute bonuses, and unique racial powers.</p>
+              <p className="text-zinc-400 text-start text-xs">Your background determines what job your character had prior to becoming an adventurer. This determines your starting gear and credits, one starting focus, and a starting stunt.</p>
             </div>
             <div className="sm:flex p-3 items-center">
               <div className="flex flex-none flex-col items-center justify-items-center mr-5">
@@ -74,6 +78,10 @@ const OneCharacter = (props) => {
           </div>
         )}
         <div className="mb-3 m-1 bg-zinc-800 p-5 rounded">
+          <div className="flex items-center border-b border-zinc-400 pb-2">
+            <p className="mx-3 text-lg self-start">Specializations: </p>
+            <p className="text-zinc-400 text-start text-xs">These are the areas in which your character will specialize, they are usually combat related. Specializations are similar to classes in other RPG's but in RISE you can choose to invest points into as many specializations as you want when you level up. Here you are limited to selecting two specializations you want to focus on. Specializations have nine ranks, with each rank granting either a power, stunt, new action, or spell(s).</p>
+          </div>
           {character.specializations.length > 0 ? (
             character.specializations.map((specialization) => (
               <span key={specialization._id}>
@@ -91,6 +99,10 @@ const OneCharacter = (props) => {
           )}
         </div>
         <div className="mb-3 m-1 bg-zinc-800 p-5 rounded">
+          <div className="flex items-center border-b border-zinc-400 pb-2">
+            <p className="mx-3 text-lg self-start">Talents: </p>
+            <p className="text-zinc-400 text-start text-xs">Talents are generally the non-combat roleplaying skills that your character will obtain. Like specializations you are not limited to how many talents you would like to unlock, however here you are limited to selecting no more than two.</p>
+          </div>
           {character.talents.length > 0 ? (
             character.talents.map((talent) => (
               <span key={talent._id}>
