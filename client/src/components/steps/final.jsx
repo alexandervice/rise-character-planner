@@ -68,11 +68,13 @@ const Final = (props) => {
             )}
           </label>
           {showChatGPTBackstory ? (
-            <button className='bg-green-200 hover:bg-green-300 rounded  px-1 border-solid border-2 border-green-400 dark:text-black' type="submit" disabled>
+            <button className='bg-green-200 hover:bg-green-300 rounded  px-1 border-solid border-2 border-green-400 dark:text-black' disabled>
               Generate Backstory
             </button>
           ) : (
-            <button className='bg-green-200 hover:bg-green-300 rounded  px-1 border-solid border-2 border-green-400 dark:text-black' type="submit" onClick={() => sendMessageToChatGPT(characterData.backstory)}>
+            <button className='bg-green-200 hover:bg-green-300 rounded  px-1 border-solid border-2 border-green-400 dark:text-black' onClick={() => sendMessageToChatGPT(
+              `Please generate a short character backstory for the character named: ${characterData.name}. They are of the race: ${characterData.race.name} (${characterData.race.description}), they have a background as a ${characterData.background.name} (${characterData.background.description}). They have two specializations: ${characterData.specializations[0].name} (${characterData.specializations[0].description}), and ${characterData.specializations[1].name} (${characterData.specializations[1].description}). And finally they have two talents: ${characterData.talents[0].name} (${characterData.talents[0].description}), and ${characterData.talents[1].name} (${characterData.talents[1].description})`
+              )}>
               Generate Backstory
             </button>
           )}

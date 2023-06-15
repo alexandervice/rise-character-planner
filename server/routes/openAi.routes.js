@@ -1,5 +1,12 @@
-const openai = require('openai');
 const apiKey = process.env.CHAT_GPT_API_KEY;
+
+import { Configuration, OpenAIApi } from "openai";
+const configuration = new Configuration({
+    organization: "org-7SIWOUnZ18FQbvUshQPa3SG6",
+    apiKey: CHAT_GPT_API_KEY,
+});
+const openai = new OpenAIApi(configuration);
+const response = await openai.listEngines();
 
 // Configure OpenAI API client
 const openaiClient = new openai.OpenAIApi(apiKey);
