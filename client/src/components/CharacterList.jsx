@@ -7,6 +7,11 @@ const CharacterList = (props) => {
   const { characterArray, deleteCharacter } = props;
   const user = JSON.parse(localStorage.getItem('user'));
 
+  const handleImageError = (event) => {
+    event.target.onerror = null; // Remove the event listener to avoid potential infinite loop
+    event.target.src = '/images/characters/placeholder.jpg'; // Set the source of the image to the placeholder image
+  };
+
   return (
     <div className='inline-block rounded p-5 bg-zinc-900'>
       <Link className='mr-3' to={`/${user._id}/characters/create`}>
@@ -19,7 +24,7 @@ const CharacterList = (props) => {
                 <div className="flex p-3 items-center">
                   <div className="flex flex-none flex-col items-center justify-items-center mr-5">
                     <p className="mb-2 text-3xl font-bold">{character.name}</p>
-                    <img className="w-48 h-48 rounded " src={`https://xsgames.co/randomusers/avatar.php?g=pixel`} alt={`${character.img}`} />
+                    <img className="w-48 h-48 rounded " src={`/images/characters/${character.img}.jpg`} alt={`${character.img}`} onError={handleImageError}/>
                   </div>
                   <p className="text-sm text-left hidden sm:block">{character.backstory}</p>
                 </div>
