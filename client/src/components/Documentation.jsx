@@ -85,6 +85,9 @@ const Documentation = (props) => {
   const renderSpecializationData = () => {
     return specializations.map((item, index)=> (
       <tr key={index}  className=' hover:bg-zinc-500'>
+        <td className='py-2 px-3 border border-slate-200'>
+          <img className='w-32 h-32' src={`/images/specializations/${item.image[0]}.jpg`} alt={`${item.name}`} />
+        </td>
         <td className='py-2 px-3 border border-slate-200'>{item.name}</td>
         <td className='py-2 px-3 border border-slate-200'>{item.description}</td>
       </tr>
@@ -153,6 +156,7 @@ const Documentation = (props) => {
         {/* Render table1 header */}
         <thead>
           <tr>
+            <th className='border py-5 dark:border-slate-200 dark:bg-zinc-700'>Image</th>
             <th className='border py-5 dark:border-slate-200 dark:bg-zinc-700'>Name</th>
             <th className='border dark:border-slate-200 dark:bg-zinc-700'>Description</th>
           </tr>
