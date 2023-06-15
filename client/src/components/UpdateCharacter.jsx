@@ -13,7 +13,7 @@ const UpdateCharacter = (props) => {
   const navigate = useNavigate();
 
   useEffect(() => {
-    axios.get(`http://localhost:8000/api/users/${user._id}/characters/find/${characterId}`)
+    axios.get(`http://localhost:8000/api/users/${user._id}/characters/find/${characterId}`, {withCredentials: true})
       .then(res => {
         setCharacter(res.data.character)
         console.log(res.data.character)
