@@ -24,15 +24,17 @@ module.exports = {
         talents,
         backstory
       };
-      console.log(character)
-
+      // console.log(character)
+      if(character.name == null) {
+        return res.status(500).json({ error: 'Characters must have a name' });
+      }
       // Add the character to the user's characters array
       user.characters.push(character);
       // to bypass the user validations
       user.markModified('characters');
       // console.log("attempting to save character")
       // Save the updated user document
-      await user.save();
+      await user.save({ validateBeforeSave: false });
 
       return res.status(201).json({ character });
     } catch (error) {
