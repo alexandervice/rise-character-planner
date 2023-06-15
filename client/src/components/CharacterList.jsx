@@ -19,7 +19,7 @@ const CharacterList = (props) => {
                 <div className="flex p-3 items-center">
                   <div className="flex flex-none flex-col items-center justify-items-center mr-5">
                     <p className="mb-2 text-3xl font-bold">{character.name}</p>
-                    <img className="w-48 h-48 rounded " src={`/images/characters/1onHPwMMRaG-Rttomzb4MSXXpP6nkdV-TVQXn7YpG.png`} alt={`${character.img}`} />
+                    <img className="w-48 h-48 rounded " src={`https://xsgames.co/randomusers/avatar.php?g=pixel`} alt={`${character.img}`} />
                   </div>
                   <p className="text-sm text-left hidden sm:block">{character.backstory}</p>
                 </div>

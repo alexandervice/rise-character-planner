@@ -45,6 +45,10 @@ const OneCharacter = (props) => {
         </div>
         {character.race && (
           <div className="mb-3 m-1 bg-zinc-800 p-5 rounded">
+            <div className="flex items-start border-b border-zinc-400 pb-2">
+              <p className="mx-3 text-lg align-top">Race: </p>
+              <p className="text-zinc-400 text-start text-xs">This is your character's species. It determines your starting HP, MP, and Movement Speed. Each Race also grants Focus options, Attribute bonuses, and unique racial powers.</p>
+            </div>
             <div className="sm:flex p-3 items-center">
               <div className="flex flex-none flex-col items-center justify-items-center mr-5">
                 <p className="mb-2 text-xl font-bold">{character.race.name}</p>
@@ -56,6 +60,10 @@ const OneCharacter = (props) => {
         )}
         {character.background && (
           <div className="mb-3 m-1 bg-zinc-800 p-5 rounded">
+            <div className="flex items-start border-b border-zinc-400 pb-2">
+              <p className="mx-3  text-lg">Background: </p>
+              <p className="text-zinc-400 text-start text-xs">This is your character's species. It determines your starting HP, MP, and Movement Speed. Each Race also grants Focus options, Attribute bonuses, and unique racial powers.</p>
+            </div>
             <div className="sm:flex p-3 items-center">
               <div className="flex flex-none flex-col items-center justify-items-center mr-5">
                 <p className="mb-2 text-xl font-bold">{character.background.name}</p>
