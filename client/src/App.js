@@ -1,5 +1,5 @@
 import React, {useState, useEffect} from 'react';
-import {BrowserRouter, Routes, Route} from 'react-router-dom';
+import {BrowserRouter, Routes, Route, Navigate} from 'react-router-dom';
 import Main from "./views/Main";
 import OneCharacter from './components/OneCharacter';
 import CreateCharacter from './components/CreateCharacter';
@@ -33,8 +33,8 @@ function App() {
         <Navbar loggedIn={loggedIn} setLoggedIn={setLoggedIn}/>
           <div className='p-5'>
             <Routes>
-              <Route element={<LoginRegistration setLoggedIn={setLoggedIn}/>} path="/" default/>
-              {/* this is the default path ^ */}
+              <Route element={loggedIn? (<Navigate to="/:userId/characters" replace />):( <LoginRegistration setLoggedIn={setLoggedIn}/>)} path="/" default/>
+
               <Route element={<Main/>} path="/:userId/characters"/>
               <Route element={<OneCharacter/>} path="/:userId/characters/:characterId"/>
               <Route element={<UpdateCharacter/>} path="/:userId/characters/edit/:characterId"/>

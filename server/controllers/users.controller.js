@@ -16,7 +16,7 @@ module.exports = {
         });
       }
       const newUser = await User.create(req.body);
-      const userToken = jwt.sign({_id: newUser._id, email:newUser.email}, secret, {expiresIn: "2h"}); // This is so the user _id isn't visible in the URL. We can make this expire later with "7d" or "24h"
+      const userToken = jwt.sign({_id: newUser._id, email:newUser.email}, secret); // This is so the user _id isn't visible in the URL. We can make this expire later with "7d" or "24h"
       res.cookie("usertoken", userToken, {httpOnly: true}).json({
         message: "Success!",
         user: newUser
@@ -42,7 +42,7 @@ module.exports = {
         }
         else {
           res.status(400).json({
-            message: "Invalid login attempt poo" // don't clarify why, so hackers don't know the email was valid and password invalid. keep the message ambiguous 
+            message: "Invalid login attempt" // don't clarify why, so hackers don't know the email was valid and password invalid. keep the message ambiguous 
           });
         }
       }
