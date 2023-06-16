@@ -38,6 +38,11 @@ const Final = (props) => {
     // console.log(characterData)
   };
 
+  const handleImageUpload = (event) => {
+    let file = event.target.files[0];
+    // process the file here, either through direct upload or by storing in the state
+}
+
   return (
     <div className='dark:bg-zinc-800 bg-slate-400 rounded py-5'>
       { loading ? <div/> :
@@ -49,7 +54,13 @@ const Final = (props) => {
         <div className='form-group '>
           <label htmlFor="characterName">
             Character Name:
-            <input type="text" required id='characterName' name='name' className='form-input mb-5 ml-2 mt-5 py-0 px-1 dark:text-black w-96' value={characterData.name} onChange={handleNameChange}/>
+            <input type="text" required id='characterName' name='name' className='form-input mb-5 ml-2 mt-5 py-0 px-1 dark:text-black w-96' value={characterData.name} multiple={false} onChange={handleNameChange} accept=".jpg,.png"/>
+          </label>
+        </div>
+        <div className='form-group'>
+          <label htmlFor="characterImage">
+            Character Image:
+            <input type="file" id='characterImage' name='image' className='form-input mb-5 ml-2 mt-5 py-0 px-1 dark:text-black' onChange={handleImageUpload}/>
           </label>
         </div>
         <div className='form-group'>

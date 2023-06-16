@@ -1,11 +1,13 @@
 const User = require("../models/user.model");
+const fs = require("fs");
+const path = require("path");
 
 
 module.exports = {
   createCharacter: async (req, res) => {
     try {
       const { userId } = req.params;
-      const { name, race, background, specializations, talents, backstory } = req.body.characterData;
+      const { name, race, background, specializations, talents, backstory, img } = req.body.characterData;
       // console.log(req.body)
       // const img = req.file.path;
 
@@ -17,7 +19,7 @@ module.exports = {
       // Create the character object
       const character = {
         name,
-        // img,
+        img,
         race,
         background,
         specializations,
@@ -102,7 +104,7 @@ module.exports = {
     
     try {
       const { userId, characterId } = req.params;
-      const { name, race, background, specializations, talents, backstory } = req.body.characterData;
+      const { name, race, background, specializations, talents, backstory, img } = req.body.characterData;
       // const img = req.file.path
       // console.log(req.body);
 
@@ -118,7 +120,7 @@ module.exports = {
 
       // Update the character fields
       character.name = name;
-      // character.img = img;
+      character.img = img;
       character.race = race;
       character.background = background;
       character.specializations = specializations;
@@ -151,6 +153,12 @@ module.exports = {
         return res.status(404).json({ error: 'Character not found' });
       }
       
+      // delete the character image from the filesystem
+      fs.unlink(path.join(__dirname, character.img), (err) => {
+        if (err) throw err;
+        console.log('Image was deleted');
+      });
+
       // Remove the character from the user's characters array
       character.deleteOne();
 
