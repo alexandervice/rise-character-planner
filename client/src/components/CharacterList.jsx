@@ -13,14 +13,14 @@ const CharacterList = (props) => {
   };
 
   return (
-    <div className='inline-block rounded p-5 bg-zinc-900'>
+    <div className='inline-block rounded p-5 bg-slate-400 dark:bg-zinc-900'>
       <Link className='mr-3' to={`/${user._id}/characters/create`}>
         <button className='my-5 bg-yellow-200 hover:bg-yellow-300 rounded px-1 border-solid border-2 border-yellow-400 mb-5 dark:text-black dark:hover:bg-yellow-200 dark:bg-yellow-300 dark:border-yellow-400'>Create a New Character</button>
       </Link>
       <h3 className='font-bold mb-4 text-4xl'>{user.userName}'s Characters</h3>
       {characterArray.map((character, index) => {
             return (
-              <div key={index} className="mb-3 m-1 bg-zinc-800 p-5 rounded">
+              <div key={index} className="mb-3 m-1 bg-slate-300 dark:bg-zinc-800 p-5 rounded">
                 <div className="flex p-3 items-center">
                   <div className="flex flex-none flex-col items-center justify-items-center mr-5">
                     <p className="mb-2 text-3xl font-bold">{character.name}</p>

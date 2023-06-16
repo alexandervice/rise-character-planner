@@ -12,21 +12,31 @@ const openai = new OpenAIApi(configuration);
 module.exports = {
   chatCompletion: async (req, res) => {
     try {
-      const { prompt } = message;
-      console.log(prompt)
-      
-      const answer = await openapi.createCompletion({
-        model: "text-davinci-003",
-        prompt: prompt,
-        temperature: 0,
-        max_tokens: 3000
+      const { message } = req.body;
+      // const response = await openai.retrieveModel("text-davinci-003");
+      // console.log(response)
+      const inputs = [
+        // {"role": "system", "content": "You are a helpful assistant."},
+        {role: "system", content: message}
+      ];
+      console.log("Sending this request to the AI :", message)
+      // const answer = await openai.createCompletion({
+      //   model: "gpt-3.5-turbo",
+      //   prompt: message,
+      // });
+
+      const answer = await openai.createChatCompletion({
+        model: "gpt-3.5-turbo",
+        messages: inputs
       });
 
-      const text = answer.data.choices[0].text;
-
+      console.log("answer received")
+      // console.log(answer.data.choices[0].message.content)
+      const text = answer.data.choices[0].message.content;
+      
+      // console.log(text)
       res.status(200).json({ text });
     } catch (err) {
-      console.log("bad")
       res.status(500).json({
         message: err.message
       });

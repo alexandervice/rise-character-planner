@@ -12,16 +12,16 @@ const Background = (props) => {
 
 
   return (
-    <div className='bg-zinc-800 rounded py-5'>
+    <div className='dark:bg-zinc-800 bg-slate-400 rounded py-5'>
       <StepButtons activeStep={activeStep} setActiveStep={setActiveStep} />
-      <div className="flex bg-zinc-800 rounded flex-wrap justify-center py-5">
+      <div className="flex rounded flex-wrap justify-center p-5">
         <p className='text-xl pb-5'>Please select one of the following backgrounds. This will determine what your character spent their time doing prior to becoming an adventurer, as well as your starting gear. Please see the documentation page for more details.</p>
         {allBackgrounds.map((background, index) => (
-          <div key={index} className={`m-4  ${characterData && characterData.background._id === background._id ? 'border-4 border-blue-500' : ''}`} onClick={() => handleBackgroundSelection(background)} onMouseEnter={() => setHovered(background)} onMouseLeave={() => setHovered(null)}>
+          <div key={index} className={`m-4 pt-5 ${characterData && characterData.background._id === background._id ? 'border-4 border-blue-600 dark:border-yellow-600' : ''}`} onClick={() => handleBackgroundSelection(background)} onMouseEnter={() => setHovered(background)} onMouseLeave={() => setHovered(null)}>
             <img src={`/images/backgrounds/${background.image[0]}.jpg`} alt={background.name} className="cursor-pointer w-40 h-40" />
-            <p className="text-center text-yellow-500 my-2">{background.name}</p>
+            <p className="text-center dark:text-yellow-500 text-slate-800 text-xl my-2">{background.name}</p>
             {hovered === background && (
-            <div className="absolute left-1/2 transform -translate-x-1/2 bg-zinc-900 p-4 rounded">
+            <div className="absolute w-96 left-1/2 transform -translate-x-1/2 dark:bg-zinc-900 p-4 bg-slate-200 rounded">
               <p className="text-center text-sm ">{background.description}</p>
             </div>
             )}

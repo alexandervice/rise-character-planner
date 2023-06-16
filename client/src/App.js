@@ -29,7 +29,7 @@ function App() {
   return (
   <BrowserRouter>
     <div className="App">
-      <div className="bg-white dark:bg-zinc-800 text-black dark:text-white .h-screen w-screen max-w-6xl flex flex-col items-center">
+      <div className="bg-slate-200 dark:bg-zinc-800 text-black dark:text-white .h-screen w-screen max-w-6xl flex flex-col items-center">
         <Navbar loggedIn={loggedIn} setLoggedIn={setLoggedIn}/>
           <div className='p-5'>
             <Routes>

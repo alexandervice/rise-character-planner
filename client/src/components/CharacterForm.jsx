@@ -84,7 +84,7 @@ const CharacterForm= (props) => {
   ];
 
   return (
-    <div className='p-4 border-4 bg-zinc-900 text-white rounded'>
+    <div className=' p-4 border-4 border-slate-800 dark:border-zinc-300 bg-slate-600 dark:bg-zinc-900 dark:text-white rounded'>
       <form onSubmit={onSubmitHandler}>
         {errors.map((err, index) => 
         <p className='error' key={index}>{err}</p>
