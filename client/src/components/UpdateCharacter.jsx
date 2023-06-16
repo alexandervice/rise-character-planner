@@ -16,7 +16,7 @@ const UpdateCharacter = (props) => {
     axios.get(`http://localhost:8000/api/users/${user._id}/characters/find/${characterId}`, {withCredentials: true})
       .then(res => {
         setCharacter(res.data.character)
-        console.log(res.data.character)
+        // console.log(res.data.character)
         res.data.character ?
         setLoaded(true) :
         setLoaded(false)
@@ -28,8 +28,8 @@ const UpdateCharacter = (props) => {
   const updateCharacter = characterData => {
     axios.patch(`http://localhost:8000/api/users/${user._id}/characters/update/${characterId}`, characterData, {withCredentials: true})
       .then(res => {
-        console.log(characterData)
-        console.log(res);
+        // console.log(characterData)
+        // console.log(res);
         navigate(`/${user._id}/characters/${characterId}`);
       })
       .catch(err => {

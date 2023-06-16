@@ -19,6 +19,7 @@ app.use("/images", express.static("images"));
 require("./routes/user.routes")(app);
 require("./routes/character.routes")(app);
 require("./routes/documentation.routes")(app);
+require("./routes/openAi.routes")(app);
 
 
 // app.use((err, req, res, next) => {

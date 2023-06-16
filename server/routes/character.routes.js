@@ -33,10 +33,10 @@ const upload = multer({
 });
 
 module.exports = app => {
-    app.post('/api/users/:userId/characters/create', authenticate, CharacterController.createCharacter);
+    app.post('/api/users/:userId/characters/create', authenticate, upload.single("image"), CharacterController.createCharacter);
     app.get('/api/users/:userId/characters', authenticate, CharacterController.getCharacters);
     app.get('/api/users/:userId/characters/find/:characterId', authenticate, CharacterController.getCharacterById);
     // Patch only changes values in the req.body
     app.patch('/api/users/:userId/characters/update/:characterId', authenticate, upload.single("image"), CharacterController.updateCharacter); 
-    app.delete('/api/users/:userId/characters/delete/:characterId', authenticate, CharacterController.deleteCharacter);
+    app.delete('/api/users/:userId/characters/delete/:characterId', authenticate, CharacterController.deleteCharacter); //add function to delete image
 }

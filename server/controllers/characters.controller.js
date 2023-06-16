@@ -127,7 +127,7 @@ module.exports = {
 
       // Save the updated user document
       await user.save({ validateBeforeSave: false });
-      console.log(character)
+      // console.log(character)
       return res.status(200).json({ character });
       
     } catch (error) {
