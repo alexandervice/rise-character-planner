@@ -19,7 +19,7 @@ module.exports = {
         // {"role": "system", "content": "You are a helpful assistant."},
         {role: "system", content: message}
       ];
-      console.log("Sending this request to the AI :", message)
+      // console.log("Sending this request to the AI :", message)
       // const answer = await openai.createCompletion({
       //   model: "gpt-3.5-turbo",
       //   prompt: message,
@@ -29,8 +29,7 @@ module.exports = {
         model: "gpt-3.5-turbo",
         messages: inputs
       });
-
-      console.log("answer received")
+      console.log("ChatGPT has responded")
       // console.log(answer.data.choices[0].message.content)
       const text = answer.data.choices[0].message.content;
       

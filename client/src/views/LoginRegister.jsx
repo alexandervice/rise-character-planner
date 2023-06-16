@@ -8,7 +8,7 @@ const LoginRegistration = (props) => {
   const setLoggedIn = props.setLoggedIn
 
   return (
-    <div className='p-5 bg-gray-300 dark:bg-gray-600 text-black dark:text-white'>
+    <div className='p-5 bg-slate-300 dark:bg-gray-600 text-black dark:text-white'>
       <Tabs>
         <TabList>
           <Tab>Register</Tab>

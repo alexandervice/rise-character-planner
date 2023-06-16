@@ -11,18 +11,19 @@ const Final = (props) => {
   const sendMessageToChatGPT = async (message) => {
     try {
       setLoading(true);
+      setShowChatGPTBackstory(false);
       const response = await axios.post('http://localhost:8000/chat', message, {withCredentials: true});
 
       // Handle the response from the backend, such as displaying the result in the UI
       console.log(response.data.text)
       const chatGPTBackstory = response.data.text;
       setCharacterData({ ...characterData, backstory: chatGPTBackstory });
-      setShowChatGPTBackstory(false);
       setLoading(false);
     } catch (error) {
       // Handle errors, such as displaying an error message to the user
       console.error(error);
       setLoading(false);
+      setShowChatGPTBackstory(true);
     }
   };
 
@@ -59,7 +60,7 @@ const Final = (props) => {
                 id='characterBackstory'
                 name='backstory'
                 className='form-input mb-5 ml-2 py-0 px-1 text-yellow-200 dark:text-yellow-500 bg-slate-400 dark:bg-zinc-800 cursor-wait'
-                rows="5"
+                rows="10"
                 cols="125"
                 value="Please wait for the AI to generate your backstory..."
                 disabled
@@ -69,7 +70,7 @@ const Final = (props) => {
                 id='characterBackstory'
                 name='backstory'
                 className='form-input mb-5 ml-2 py-0 px-1 dark:text-black'
-                rows="5"
+                rows="10"
                 cols="125"
                 value={characterData.backstory}
                 onChange={handleBackstoryChange}
