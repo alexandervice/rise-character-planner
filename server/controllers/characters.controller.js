@@ -1,40 +1,48 @@
 const User = require("../models/user.model");
-const fs = require("fs");
-const path = require("path");
+const aws = require('aws-sdk');
+
+// Create a new S3 instance
+const s3 = new aws.S3({
+  accessKeyId: process.env.AWS_ACCESS_KEY,
+  secretAccessKey: process.env.AWS_SECRET_KEY,
+  region: process.env.AWS_BUCKET_REGION
+});
 
 
 module.exports = {
   createCharacter: async (req, res) => {
     try {
       const { userId } = req.params;
-      const { name, race, background, specializations, talents, backstory, img } = req.body.characterData;
+      const { name, race, background, specializations, talents, backstory} = req.body;
       // console.log(req.body)
-      // const img = req.file.path;
 
       const user = await User.findById(userId);
       if (!user) {
         return res.status(404).json({ error: 'User not found' });
       }
-
       // Create the character object
       const character = {
         name,
-        img,
-        race,
-        background,
-        specializations,
-        talents,
+        // img, // This will be the URL of the uploaded file
+        race: JSON.parse(race),
+        background: JSON.parse(background),
+        specializations: specializations.map(JSON.parse),
+        talents: talents.map(JSON.parse),
         backstory
       };
+
+      if (req.file) {
+        character.img = req.file.location; 
+      }
+
       // console.log(character)
       if(character.name == null) {
         return res.status(500).json({ error: 'Characters must have a name' });
       }
       // Add the character to the user's characters array
       user.characters.push(character);
-      // to bypass the user validations
       user.markModified('characters');
-      // console.log("attempting to save character")
+
       // Save the updated user document
       await user.save({ validateBeforeSave: false });
 
@@ -96,17 +104,15 @@ module.exports = {
 
   // Update a specific character for a user
   updateCharacter: async (req, res) => {
-    // const { userId, characterId } = req.params;
-    // console.log(req.body)
-    // User.findOneAndUpdate({ _id: userId, "characters._id" : `${characterId}` }, { $set : {"characters.$" : req.body}}, { new: true, validateBeforeSave: false })
-    //   .then(updatedCharacter => res.json({updatedCharacter}))
-    //   .catch(err => res.status(400).json(err));
-    
     try {
       const { userId, characterId } = req.params;
-      const { name, race, background, specializations, talents, backstory, img } = req.body.characterData;
-      // const img = req.file.path
-      // console.log(req.body);
+      const { name, race, background, specializations, talents, backstory} = req.body;
+      // console.log(req.body)
+      // const img = req.file.location;
+
+      if(name == null) {
+        return res.status(500).json({ error: 'Characters must have a name' });
+      }
 
       const user = await User.findById(userId);
       if (!user) {
@@ -118,16 +124,33 @@ module.exports = {
         return res.status(404).json({ error: 'Character not found' });
       }
 
+      if (req.file) {
+        const params = {
+          Bucket: process.env.AWS_BUCKET_NAME,
+          Key: character.img
+        };
+        try {
+          // Awaiting s3.deleteObject promise
+          const data = await s3.deleteObject(params).promise();
+          console.log(data);
+        } catch(err) {
+          console.log(err, err.stack);
+        }
+        character.img = req.file.location; 
+      }
+      // Delete the image from the S3 bucket
+
       // Update the character fields
       character.name = name;
-      character.img = img;
-      character.race = race;
-      character.background = background;
-      character.specializations = specializations;
-      character.talents = talents
-      character.backstory = backstory
+      // character.img = img;
+      character.race = JSON.parse(race);
+      character.background = JSON.parse(background);
+      character.specializations = specializations.map(JSON.parse);
+      character.talents = talents.map(JSON.parse);
+      character.backstory = backstory;
 
       // Save the updated user document
+      user.markModified('characters');
       await user.save({ validateBeforeSave: false });
       // console.log(character)
       return res.status(200).json({ character });
@@ -153,18 +176,34 @@ module.exports = {
         return res.status(404).json({ error: 'Character not found' });
       }
       
-      // delete the character image from the filesystem
-      fs.unlink(path.join(__dirname, character.img), (err) => {
-        if (err) throw err;
-        console.log('Image was deleted');
-      });
-
-      // Remove the character from the user's characters array
-      character.deleteOne();
-
-      // Save the updated user document
-      await user.save({ validateBeforeSave: false });
-
+      // Remember the image key before deleting the character
+      if(character.img) {
+        const imageKey = character.img;
+        // Remove the character from the user's characters array
+        character.deleteOne();
+        user.markModified('characters');
+        // Save the updated user document
+        await user.save({ validateBeforeSave: false });
+  
+        // Delete the image from the S3 bucket
+        const params = {
+          Bucket: process.env.AWS_BUCKET_NAME,
+          Key: imageKey,
+        };
+        try {
+          // Awaiting s3.deleteObject promise
+          const data = await s3.deleteObject(params).promise();
+          console.log(data);
+        } catch(err) {
+          console.log(err, err.stack);
+        }
+      } else {
+        // Remove the character from the user's characters array
+        character.deleteOne();
+        user.markModified('characters');
+        // Save the updated user document
+        await user.save({ validateBeforeSave: false });
+      }
       return res.status(200).json({ message: 'Character deleted' });
     } catch (error) {
       console.error(error);
@@ -173,37 +212,3 @@ module.exports = {
   }
 }
 
-// old way - when there was just one collection called characters:
-
-// module.exports = {
-//   // CREATE
-//   createNewCharacter: (req, res) => {
-//     Character.create(req.body)
-//       .then(newCharacter => res.json({character: newCharacter}))
-//       .catch(err => res.status(400).json(err));
-//   },
-//   // READ ALL
-//   findAllCharacters: (req, res) => {
-//     Character.find().sort({updatedAt:1})
-//       .then(allCharacters => res.json({characters: allCharacters}))
-//       .catch(err => res.json(err));
-//   },
-//   // READ ONE
-//   findOneCharacter: (req, res) => {
-//     Character.findOne({ _id: req.params.id })
-//       .then(oneCharacter => res.json({character: oneCharacter}))
-//       .catch(err => res.json(err));
-//   },
-//   // UPDATE
-//   updateCharacter: (req, res) => {
-//     Character.findOneAndUpdate({ _id: req.params.id }, req.body, { new: true, runValidators: true })
-//       .then(updatedCharacter => res.json({character: updatedCharacter}))
-//       .catch(err => res.status(400).json(err));
-//   },
-//   // DELETE
-//   deleteCharacter: (req, res) => {
-//     Character.deleteOne({ _id: req.params.id })
-//       .then(result => res.json({result: result}))
-//       .catch(err => res.json(err));
-//   }
-// }

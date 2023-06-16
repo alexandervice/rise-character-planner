@@ -42,7 +42,7 @@ const OneCharacter = (props) => {
           <div className="sm:flex p-3 items-center">
             <div className="flex flex-none flex-col items-center justify-items-center mr-5">
               <p className="mb-2 text-3xl font-bold">{character.name}</p>
-              <img className="w-40 h-40 sm:w-64 sm:h-64 rounded " src={`/images/characters/${character.img}`} alt={`${character.img}`} onError={handleImageError}/>
+              <img className="w-40 sm:w-64  rounded " src={`${character.img}`} alt={`${character.img}`} onError={handleImageError}/>
             </div>
             <p className="text-sm text-left hidden sm:block">{character.backstory}</p>
           </div>

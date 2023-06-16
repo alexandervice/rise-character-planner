@@ -17,15 +17,29 @@ const CreateCharacter = (props) => {
     talents: []
   }
 
-  const createCharacter = characterData => {
-    axios.post(`http://localhost:8000/api/users/${user._id}/characters/create`, characterData, {withCredentials: true})
+  const createCharacter = data => {
+    let characterData = data.characterData
+    let formData = new FormData();
+    formData.append('name', characterData.name);
+    formData.append('img', characterData.img);
+    formData.append('backstory', characterData.backstory);
+    formData.append('race', JSON.stringify(characterData.race));
+    formData.append('background', JSON.stringify(characterData.background));
+    characterData.specializations.forEach((spec, index) => {
+      formData.append(`specializations[${index}]`, JSON.stringify(spec));
+    });
+    characterData.talents.forEach((talent, index) => {
+      formData.append(`talents[${index}]`, JSON.stringify(talent));
+    });
+
+    axios.post(`http://localhost:8000/api/users/${user._id}/characters/create`, formData, {withCredentials: true, headers: {'Content-Type': 'multipart/form-data'}})
       .then(res=>{
-        console.log(characterData)
+        console.log(formData)
         console.log(res);
         navigate(`/${user._id}/characters`);
       })
       .catch(err=> {
-        console.log(characterData)
+        console.log(formData)
         console.log(err)
         const errorResponse = err.response.data.errors;
         const errorArray = [];

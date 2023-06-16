@@ -25,11 +25,25 @@ const UpdateCharacter = (props) => {
         // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [])
 
-  const updateCharacter = characterData => {
-    axios.patch(`http://localhost:8000/api/users/${user._id}/characters/update/${characterId}`, characterData, {withCredentials: true})
+  const updateCharacter = data => {
+    let characterData = data.characterData
+    let formData = new FormData();
+    formData.append('name', characterData.name);
+    formData.append('img', characterData.img);
+    formData.append('backstory', characterData.backstory);
+    formData.append('race', JSON.stringify(characterData.race));
+    formData.append('background', JSON.stringify(characterData.background));
+    characterData.specializations.forEach((spec, index) => {
+      formData.append(`specializations[${index}]`, JSON.stringify(spec));
+    });
+    characterData.talents.forEach((talent, index) => {
+      formData.append(`talents[${index}]`, JSON.stringify(talent));
+    });
+
+    axios.patch(`http://localhost:8000/api/users/${user._id}/characters/update/${characterId}`, formData, {withCredentials: true, headers: {'Content-Type': 'multipart/form-data'}})
       .then(res => {
         // console.log(characterData)
-        // console.log(res);
+        console.log(res);
         navigate(`/${user._id}/characters/${characterId}`);
       })
       .catch(err => {
@@ -54,7 +68,7 @@ const UpdateCharacter = (props) => {
       </div>:
       <div>
         <p>"We're sorry, but we could not find the character you are looking for. Would you like to create a new character?"</p>
-        <Link className='characterItem ' to={`/${user._id}/characters/create`}><button className='bg-purple-100 hover:bg-purple-200 rounded px-1 border-solid border-2 mt-3 border-purple-500 mb-5'>Create a New Character</button></Link>
+        <Link className='characterItem ' to={`/${user._id}/characters/create`}><button className='bg-rose-100 hover:bg-rose-200 rounded px-1 border-solid border-2 mt-3 border-rose-500 mb-5 dark:text-black'>Create a New Character</button></Link>
       </div>}
     </div>
   )

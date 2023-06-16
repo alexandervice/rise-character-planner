@@ -24,7 +24,7 @@ const CharacterList = (props) => {
                 <div className="flex p-3 items-center">
                   <div className="flex flex-none flex-col items-center justify-items-center mr-5">
                     <p className="mb-2 text-3xl font-bold">{character.name}</p>
-                    <img className="w-48 h-48 rounded " src={`/images/characters/${character.img}.jpg`} alt={`${character.img}`} onError={handleImageError}/>
+                    <img className="w-48 rounded " src={`${character.img}`} alt={`${character.img}`} onError={handleImageError}/>
                   </div>
                   <p className="text-sm text-left hidden sm:block">{character.backstory}</p>
                 </div>

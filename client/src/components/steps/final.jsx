@@ -38,9 +38,17 @@ const Final = (props) => {
     // console.log(characterData)
   };
 
-  const handleImageUpload = (event) => {
-    let file = event.target.files[0];
-    // process the file here, either through direct upload or by storing in the state
+  const handleImageUpload = (e) => {
+    const file = e.target.files[0]; // Get the first selected file
+    const fileSizeLimitInBytes = 5 * 1024 * 1024; // 5 MB (adjust the limit as per your requirements)
+
+    if (file && file.size > fileSizeLimitInBytes) {
+      // Display an error message or perform appropriate actions
+      alert('File size exceeds the allowed limit (5MB). Please choose a smaller file.');
+      e.target.value = null; // Clear the input field if the file is invalid
+    } else {
+      setCharacterData({ ...characterData, img: file });
+    }
 }
 
   return (
@@ -58,10 +66,16 @@ const Final = (props) => {
           </label>
         </div>
         <div className='form-group'>
-          <label htmlFor="characterImage">
-            Character Image:
-            <input type="file" id='characterImage' name='image' className='form-input mb-5 ml-2 mt-5 py-0 px-1 dark:text-black' onChange={handleImageUpload}/>
-          </label>
+          {characterData.img ? 
+            <label htmlFor="characterImage">
+              Update Character Image:
+              <input type="file" id='characterImage' name='image' className='form-input mb-5 ml-2 mt-5 py-0 px-1 dark:text-black' onChange={handleImageUpload} style={{display: "test"}} accept=".jpg,.png"/>
+            </label> :
+            <label htmlFor="characterImage">
+              Character Image:
+              <input type="file" id='characterImage' name='image' className='form-input mb-5 ml-2 mt-5 py-0 px-1 dark:text-black' onChange={handleImageUpload} style={{display: "test"}} accept=".jpg,.png"/>
+            </label>
+          }
         </div>
         <div className='form-group'>
           <label className='flex justify-center' htmlFor="characterBackstory">
