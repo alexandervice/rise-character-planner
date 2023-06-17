@@ -71,7 +71,7 @@ const OneCharacter = (props) => {
             <div className="sm:flex p-3 items-center">
               <div className="flex flex-none flex-col items-center justify-items-center mr-5">
                 <p className="mb-2 text-xl font-bold">{character.background.name}</p>
-                <img className="w-40 h-40 rounded " src={`/images/backgrounds/${character.background.image[0]}.jpg`} alt={`${character.background.name}`} />
+                <img className="w-40 h-40 rounded invert dark:invert-0" src={`/images/backgrounds/${character.background.image[0]}.png`} alt={`${character.background.image[0]}`} />
               </div>
               <p className="text-sm text-left hidden sm:block">{character.background.description}</p>
             </div>
@@ -109,7 +109,7 @@ const OneCharacter = (props) => {
                 <div className="sm:flex p-3 items-center">
                   <div className="flex flex-none flex-col items-center justify-items-center mr-5">
                     <p className="mb-2 text-xl font-bold">{talent.name}</p>
-                    <img className="w-40 h-40 rounded " src={`/images/talents/${talent.image[0]}.jpg`} alt={`${talent.name}`} />
+                    <img className="w-40 h-40 rounded " src={`/images/talents/${talent.image[0]}.png`} alt={`${talent.name}`} />
                   </div>
                   <p className="text-sm text-left hidden sm:block">{talent.description}</p>
                 </div>

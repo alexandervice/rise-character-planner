@@ -44,7 +44,7 @@ module.exports = {
       user.markModified('characters');
 
       // Save the updated user document
-      await user.save({ validateBeforeSave: false });
+      await user.save();
 
       return res.status(201).json({ character });
     } catch (error) {
@@ -127,7 +127,7 @@ module.exports = {
       if (req.file) {
         const params = {
           Bucket: process.env.AWS_BUCKET_NAME,
-          Key: character.img
+          Key: new URL(character.img).pathname.substring(1)
         };
         try {
           // Awaiting s3.deleteObject promise
@@ -151,7 +151,7 @@ module.exports = {
 
       // Save the updated user document
       user.markModified('characters');
-      await user.save({ validateBeforeSave: false });
+      await user.save();
       // console.log(character)
       return res.status(200).json({ character });
       
@@ -178,7 +178,7 @@ module.exports = {
       
       // Remember the image key before deleting the character
       if(character.img) {
-        const imageKey = character.img;
+        const imageKey = new URL(character.img).pathname.substring(1);
         // Remove the character from the user's characters array
         character.deleteOne();
         user.markModified('characters');
@@ -186,16 +186,19 @@ module.exports = {
         await user.save({ validateBeforeSave: false });
   
         // Delete the image from the S3 bucket
+        
         const params = {
           Bucket: process.env.AWS_BUCKET_NAME,
           Key: imageKey,
         };
         try {
+          // console.log("attempting to delete image from S3 Bucket", imageKey)
           // Awaiting s3.deleteObject promise
           const data = await s3.deleteObject(params).promise();
           console.log(data);
         } catch(err) {
           console.log(err, err.stack);
+          return res.status(500).json({ error: err.message });
         }
       } else {
         // Remove the character from the user's characters array

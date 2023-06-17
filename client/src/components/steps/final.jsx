@@ -1,5 +1,5 @@
 import React, {useState} from 'react';
-import StepButtons from './StepButtons';
+import StepBack from './StepBack';
 import CancelButton from '../CancelButton';
 import axios from 'axios';
 
@@ -15,7 +15,7 @@ const Final = (props) => {
       const response = await axios.post('http://localhost:8000/chat', message, {withCredentials: true});
 
       // Handle the response from the backend, such as displaying the result in the UI
-      console.log(response.data.text)
+      // console.log(response.data.text)
       const chatGPTBackstory = response.data.text;
       setCharacterData({ ...characterData, backstory: chatGPTBackstory });
       setLoading(false);
@@ -54,7 +54,7 @@ const Final = (props) => {
   return (
     <div className='dark:bg-zinc-800 bg-slate-400 rounded py-5'>
       { loading ? <div/> :
-        <StepButtons activeStep={activeStep} setActiveStep={setActiveStep} />
+        <StepBack activeStep={activeStep} setActiveStep={setActiveStep} />
       }
       
       <div className="flex flex-col flex-wrap justify-center p-5">
@@ -62,7 +62,7 @@ const Final = (props) => {
         <div className='form-group '>
           <label htmlFor="characterName">
             Character Name:
-            <input type="text" required id='characterName' name='name' className='form-input mb-5 ml-2 mt-5 py-0 px-1 dark:text-black w-96' value={characterData.name} multiple={false} onChange={handleNameChange} accept=".jpg,.png"/>
+            <input type="text" required id='characterName' name='name' className='form-input mb-5 ml-2 mt-5 py-0 px-1 dark:text-black w-96' value={characterData.name} multiple={false} onChange={handleNameChange}/>
           </label>
         </div>
         <div className='form-group'>
@@ -99,6 +99,7 @@ const Final = (props) => {
                 cols="125"
                 value={characterData.backstory}
                 onChange={handleBackstoryChange}
+                required
               ></textarea>
             )}
           </label>
@@ -107,7 +108,7 @@ const Final = (props) => {
             //   Backstory Generated
             // </button>
             <button className='text-xl bg-purple-800 hover:bg-purple-400 rounded px-2 p-1 border-solid border-2 hover:border-4 hover:border-purple-100 border-purple-500 text-white hover:text-black' type='button' onClick={() => sendMessageToChatGPT({
-              "message" : `Please generate a short character backstory for the character named: ${characterData.name}. They are of the race: ${characterData.race.name} (${characterData.race.description}), they have a background as a ${characterData.background.name} (${characterData.background.description}). They have two specializations: ${characterData.specializations[0].name} (${characterData.specializations[0].description}), and ${characterData.specializations[1].name} (${characterData.specializations[1].description}). And finally they have two talents: ${characterData.talents[0].name} (${characterData.talents[0].description}), and ${characterData.talents[1].name} (${characterData.talents[1].description})`
+              "message" : `Please generate a short character backstory for the character named: ${characterData.name}. They are of the race: ${characterData.race.name} (${characterData.race.description}), they have a background as a ${characterData.background.name} (${characterData.background.description}). They have two specializations: ${characterData.specializations[0].name} (${characterData.specializations[0].description}), and ${characterData.specializations[1].name} (${characterData.specializations[1].description}). And finally they have two talents: ${characterData.talents[0].name} (${characterData.talents[0].description}), and ${characterData.talents[1].name} (${characterData.talents[1].description}). Please note: They live on the moon of Elara 1000 years after advanced space travel technology was lost. This is a world of both science and magic with many interesting races and peoples.`
             })}>
               Generate AI Backstory
             </button>
