@@ -77,7 +77,7 @@ const Documentation = (props) => {
     return backgrounds.map((item, index)=> (
       <tr key={index} className='dark:hover:bg-slate-800 hover:bg-sky-200'>
         <td className='py-2 px-3 border border-slate-800 dark:border-slate-200  w-48'>
-          <img className='w-32' src={item.image[0]} alt={`${item.name}`} />
+          <img className='dark:invert' src={item.image[0]} alt={`${item.name}`} />
         </td>
         <td className='py-2 px-3 border border-slate-800 dark:border-slate-200'>{item.name}</td>
         <td className='py-2 px-3 border border-slate-800 dark:border-slate-200'>{item.description}</td>
@@ -101,7 +101,7 @@ const Documentation = (props) => {
     return talents.map((item, index)=> (
       <tr key={index} className='dark:hover:bg-slate-800 hover:bg-sky-200'>
         <td className='py-2 px-3 border border-slate-800 dark:border-slate-200 w-48'>
-          <img className='w-32' src={item.image[0]} alt={`${item.name}`} />
+          <img className='dark:invert' src={item.image[0]} alt={`${item.name}`} />
         </td>
         <td className='py-2 px-3 border border-slate-800 dark:border-slate-200'>{item.name}</td>
         <td className='py-2 px-3 border border-slate-800 dark:border-slate-200'>{item.description}</td>

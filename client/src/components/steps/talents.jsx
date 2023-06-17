@@ -42,7 +42,7 @@ const Talents = (props) => {
         {allTalents.map((talent, index) => {
         return (
           <div key={index} className={`m-4 pt-5 ${lodash.find(characterData.talents, talent) ? 'border-4 border-blue-600 dark:border-yellow-600 dark:bg-zinc-900 bg-slate-300' : ''}`} onClick={() => handleTalentSelection(talent)} onMouseEnter={() => setHovered(talent)} onMouseLeave={() => setHovered(null)}>
-            <img src={talent.image[0]} alt={talent.name} className="cursor-pointer w-40 h-40" />
+            <img src={talent.image[0]} alt={talent.name} className="cursor-pointer w-40 h-40 dark:invert" />
             <p className="text-center dark:text-yellow-500 text-slate-800 text-xl my-2">{talent.name}</p>
             {hovered === talent && (
             <div className="absolute left-1/2 transform -translate-x-1/2 dark:bg-zinc-900 p-4 bg-slate-200 rounded">

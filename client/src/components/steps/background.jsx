@@ -23,9 +23,9 @@ const Background = (props) => {
             <img src={background.image[0]} alt={background.name} className="cursor-pointer w-40 h-40 dark:invert" />
             <p className="text-center dark:text-yellow-500 text-slate-800 text-xl my-2">{background.name}</p>
             {hovered === background && (
-            <div className="absolute w-96 left-1/2 transform -translate-x-1/2 dark:bg-zinc-900 p-4 bg-slate-200 rounded">
-              <p className="text-center text-sm ">{background.description}</p>
-            </div>
+              <div className="absolute left-1/2 transform -translate-x-1/2 dark:bg-zinc-900 p-4 bg-slate-200 rounded">
+                <p className="text-center text-sm ">{background.description}</p>
+              </div>
             )}
           </div>
         ))}
