@@ -68,7 +68,7 @@ const Documentation = (props) => {
           <img src={item.image[0]} alt={`${item.name}`} />
         </td>
         <td className='py-2 px-3 border border-slate-800 dark:border-slate-200'>{item.name}</td>
-        <td className='py-2 px-3 border border-slate-800 dark:border-slate-200 text-sm'>{item.description}</td>
+        <td className='py-2 px-3 border border-slate-800 dark:border-slate-200 text-sm hidden md:table-cell'>{item.description}</td>
       </tr>
       ))
   };
@@ -80,7 +80,7 @@ const Documentation = (props) => {
           <img className='dark:invert' src={item.image[0]} alt={`${item.name}`} />
         </td>
         <td className='py-2 px-3 border border-slate-800 dark:border-slate-200'>{item.name}</td>
-        <td className='py-2 px-3 border border-slate-800 dark:border-slate-200'>{item.description}</td>
+        <td className='py-2 px-3 border border-slate-800 dark:border-slate-200 hidden md:table-cell'>{item.description}</td>
       </tr>
     ))
   };
@@ -92,7 +92,7 @@ const Documentation = (props) => {
           <img className='' src={item.image[0]} alt={`${item.name}`} />
         </td>
         <td className='py-2 px-3 border border-slate-800 dark:border-slate-200'>{item.name}</td>
-        <td className='py-2 px-3 border border-slate-800 dark:border-slate-200'>{item.description}</td>
+        <td className='py-2 px-3 border border-slate-800 dark:border-slate-200 hidden md:table-cell'>{item.description}</td>
       </tr>
       ))
   };
@@ -104,7 +104,7 @@ const Documentation = (props) => {
           <img className='dark:invert' src={item.image[0]} alt={`${item.name}`} />
         </td>
         <td className='py-2 px-3 border border-slate-800 dark:border-slate-200'>{item.name}</td>
-        <td className='py-2 px-3 border border-slate-800 dark:border-slate-200'>{item.description}</td>
+        <td className='py-2 px-3 border border-slate-800 dark:border-slate-200 hidden md:table-cell'>{item.description}</td>
       </tr>
     ))
   };
@@ -123,7 +123,7 @@ const Documentation = (props) => {
           <tr>
             <th className='border  border-slate-800 bg-slate-400 py-5 dark:border-slate-200 dark:bg-zinc-700'>Image</th>
             <th className='border  border-slate-800 bg-slate-400 py-5 dark:border-slate-200 dark:bg-zinc-700'>Name</th>
-            <th className='border  border-slate-800 bg-slate-400 dark:border-slate-200 dark:bg-zinc-700'>Description</th>
+            <th className='border  border-slate-800 bg-slate-400 dark:border-slate-200 dark:bg-zinc-700 hidden md:table-cell'>Description</th>
           </tr>
         </thead>
         {/* Render table1 data */}
@@ -144,7 +144,7 @@ const Documentation = (props) => {
           <tr>
             <th className='border  border-slate-800 bg-slate-400 py-5 dark:border-slate-200 dark:bg-zinc-700'>Image</th>
             <th className='border border-slate-800 bg-slate-400 py-5 dark:border-slate-200 dark:bg-zinc-700'>Name</th>
-            <th className='border border-slate-800 bg-slate-400 dark:border-slate-200 dark:bg-zinc-700'>Description</th>
+            <th className='border border-slate-800 bg-slate-400 dark:border-slate-200 dark:bg-zinc-700 hidden md:table-cell'>Description</th>
           </tr>
         </thead>
         {/* Render table1 data */}
@@ -165,7 +165,7 @@ const Documentation = (props) => {
           <tr>
             <th className='border  border-slate-800 bg-slate-400 py-5 dark:border-slate-200 dark:bg-zinc-700'>Image</th>
             <th className='border  border-slate-800 bg-slate-400 py-5 dark:border-slate-200 dark:bg-zinc-700'>Name</th>
-            <th className='border  border-slate-800 bg-slate-400 dark:border-slate-200 dark:bg-zinc-700'>Description</th>
+            <th className='border  border-slate-800 bg-slate-400 dark:border-slate-200 dark:bg-zinc-700 hidden md:table-cell'>Description</th>
           </tr>
         </thead>
         {/* Render table1 data */}
@@ -186,7 +186,7 @@ const Documentation = (props) => {
           <tr>
             <th className='border  border-slate-800 bg-slate-400 py-5 dark:border-slate-200 dark:bg-zinc-700'>Image</th>
             <th className='border  border-slate-800 bg-slate-400 py-5 dark:border-slate-200 dark:bg-zinc-700'>Name</th>
-            <th className='border  border-slate-800 bg-slate-400 dark:border-slate-200 dark:bg-zinc-700'>Description</th>
+            <th className='border  border-slate-800 bg-slate-400 dark:border-slate-200 dark:bg-zinc-700 hidden md:table-cell'>Description</th>
           </tr>
         </thead>
         {/* Render table1 data */}
@@ -199,10 +199,10 @@ const Documentation = (props) => {
     <div className='p-5  bg-slate-300 dark:bg-zinc-900 text-black dark:text-white'>
       <Tabs>
         <TabList>
-          <Tab>Races</Tab>
-          <Tab>Backgrounds</Tab>
-          <Tab>Specializations</Tab>
-          <Tab>Talents</Tab>
+          <Tab><p className='text-lg mb-4'>Races</p></Tab>
+          <Tab><p className='text-lg mb-4'>Backgrounds</p> </Tab>
+          <Tab><p className='text-lg mb-4'>Specializations</p> </Tab>
+          <Tab><p className='text-lg mb-4'>Talents</p> </Tab>
         </TabList>
         <TabPanel>
           {renderRaces()}

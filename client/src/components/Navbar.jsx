@@ -13,7 +13,7 @@ const Navbar = (props) => {
   return (
     <nav className="w-screen max-w-7xl mb-12 bg-slate-300 dark:bg-zinc-900  py-4">
       <div className="container mx-auto sm:flex items-center justify-between max-w-5xl px-5">
-        <h1 className="dark:text-yellow-500 font-bold text-3xl text-blue-700">
+        <h1 className="dark:text-yellow-500 font-bold text-3xl text-blue-700 mb-5 sm:mb-0">
           RISE Character Planner
         </h1>
         <div className="space-x-4 flex items-center">

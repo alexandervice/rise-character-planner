@@ -22,8 +22,8 @@ const Race = (props) => {
               <img src={race.image[0]} alt={race.name} className="cursor-pointer w-40 h-40" />
               <p className="text-center dark:text-yellow-500 text-slate-800 text-xl my-2">{race.name}</p>
               {hovered === race && (
-                <div className="absolute left-1/2 transform -translate-x-1/2 dark:bg-zinc-900 p-4 bg-slate-200 rounded">
-                  <p className="text-center text-sm ">{race.description}</p>
+                <div className="absolute left-1/2 transform -translate-x-1/2 dark:bg-zinc-900 p-4 bg-slate-200 rounded invisible lg:visible">
+                  <p className="text-center text-sm">{race.description}</p>
                 </div>
               )}
             </div>

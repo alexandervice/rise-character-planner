@@ -62,29 +62,29 @@ const Final = (props) => {
         <div className='form-group '>
           <label htmlFor="characterName">
             Character Name:
-            <input type="text" required id='characterName' name='name' className='form-input mb-5 ml-2 mt-5 py-0 px-1 dark:text-black w-96' value={characterData.name} multiple={false} onChange={handleNameChange}/>
+            <input type="text" required id='characterName' name='name' className='form-input mb-5 ml-2 mt-5 py-0 px-1 dark:text-black w-1/2' value={characterData.name} multiple={false} onChange={handleNameChange}/>
           </label>
         </div>
         <div className='form-group'>
           {characterData.img ? 
             <label htmlFor="characterImage">
               Update Character Image:
-              <input type="file" id='characterImage' name='image' className='form-input mb-5 ml-2 mt-5 py-0 px-1 dark:text-black' onChange={handleImageUpload} style={{display: "test"}} accept=".jpg,.png"/>
+              <input type="file" id='characterImage' name='image' className='form-input mb-5 ml-2 mt-5 py-0 px-1 dark:text-black w-1/2' onChange={handleImageUpload} style={{display: "test"}} accept=".jpg,.png"/>
             </label> :
             <label htmlFor="characterImage">
               Character Image:
-              <input type="file" id='characterImage' name='image' className='form-input mb-5 ml-2 mt-5 py-0 px-1 dark:text-black' onChange={handleImageUpload} style={{display: "test"}} accept=".jpg,.png"/>
+              <input type="file" id='characterImage' name='image' className='form-input mb-5 ml-2 mt-5 py-0 px-1 dark:text-black w-1/2' onChange={handleImageUpload} style={{display: "test"}} accept=".jpg,.png"/>
             </label>
           }
         </div>
         <div className='form-group'>
-          <label className='flex justify-center' htmlFor="characterBackstory">
+          <label className='flex flex-col justify-center' htmlFor="characterBackstory">
             Backstory:
             {loading ? (
               <textarea
                 id='characterBackstory'
                 name='backstory'
-                className='form-input mb-5 ml-2 py-0 px-1 text-yellow-200 dark:text-yellow-500 bg-slate-400 dark:bg-zinc-800 cursor-wait'
+                className='form-input mb-5 ml-2 py-0 px-1 text-yellow-200 dark:text-yellow-500 bg-slate-400 dark:bg-zinc-800 cursor-wait w-full mt-2'
                 rows="10"
                 cols="125"
                 value="Please wait for the AI to generate your backstory..."
@@ -94,7 +94,7 @@ const Final = (props) => {
               <textarea
                 id='characterBackstory'
                 name='backstory'
-                className='form-input mb-5 ml-2 py-0 px-1 dark:text-black'
+                className='form-input mb-5 ml-2 py-0 px-1 dark:text-black w-full mt-2'
                 rows="10"
                 cols="125"
                 value={characterData.backstory}
