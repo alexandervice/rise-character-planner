@@ -17,10 +17,10 @@ const Navbar = (props) => {
           RISE Character Planner
         </h1>
         <div className="space-x-4 flex items-center">
-          {/* <Link to="/map" className="text-zinc-700 dark:text-white ">
+          <Link to="/map" className="text-zinc-700 dark:text-white ">
             <FiMap className="inline mr-1" />
-            Settings
-          </Link> */}
+            Map
+          </Link>
           <Link to="/documentation" className="text-zinc-700 dark:text-white ">
             <FiHome className="inline mr-1" />
             Documentation
