@@ -1,0 +1,26 @@
+version: '3'
+services:
+  client:
+    build: ./client
+    ports:
+      - '3000:3000'
+    depends_on:
+      - server
+
+  server:
+    build: ./server
+    ports:
+      - '8000:8000'
+    environment:
+      - MONGO_USERNAME=${MONGO_USERNAME}
+      - MONGO_PASSWORD=${MONGO_PASSWORD}
+      - MONGO_CLUSTER=${MONGO_CLUSTER}
+      - OTHER_ENV_VAR=${OTHER_ENV_VAR}
+      - SECRET_KEY = ${SECRET_KEY}
+      - CHAT_GPT_API_KEY = ${CHAT_GPT_API_KEY}
+      - AWS_BUCKET_NAME = ${AWS_BUCKET_NAME}
+      - AWS_BUCKET_REGION = ${AWS_BUCKET_REGION}
+      - AWS_ACCESS_KEY = ${AWS_ACCESS_KEY}
+      - AWS_SECRET_KEY = ${AWS_SECRET_KEY}
+      - PORT = ${PORT}
+      - CORS_ORIGIN=${CORS_ORIGIN}
