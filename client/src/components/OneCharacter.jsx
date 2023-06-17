@@ -42,7 +42,7 @@ const OneCharacter = (props) => {
           <div className="sm:flex p-3 items-center">
             <div className="flex flex-none flex-col items-center justify-items-center mr-5">
               <p className="mb-2 text-3xl font-bold">{character.name}</p>
-              <img className="w-40 sm:w-64  rounded " src={`${character.img}`} alt={`${character.img}`} onError={handleImageError}/>
+              <img className="w-40 sm:w-64  rounded " src={character.img} alt={`${character.img}`} onError={handleImageError}/>
             </div>
             <p className="text-sm text-left hidden sm:block">{character.backstory}</p>
           </div>
@@ -56,7 +56,7 @@ const OneCharacter = (props) => {
             <div className="sm:flex p-3 items-center">
               <div className="flex flex-none flex-col items-center justify-items-center mr-5">
                 <p className="mb-2 text-xl font-bold">{character.race.name}</p>
-                <img className="w-40 h-40 rounded " src={`/images/races/${character.race.image[0]}.jpg`} alt={`${character.race.name}`} />
+                <img className="w-40 h-40 rounded " src={character.race.image[0]} alt={`${character.race.name}`} />
               </div>
               <p className="text-sm text-left  hidden sm:block">{character.race.description}</p>
             </div>
@@ -71,7 +71,7 @@ const OneCharacter = (props) => {
             <div className="sm:flex p-3 items-center">
               <div className="flex flex-none flex-col items-center justify-items-center mr-5">
                 <p className="mb-2 text-xl font-bold">{character.background.name}</p>
-                <img className="w-40 h-40 rounded invert dark:invert-0" src={`/images/backgrounds/${character.background.image[0]}.png`} alt={`${character.background.image[0]}`} />
+                <img className="w-40 h-40 rounded invert dark:invert-0" src={character.background.image[0]} alt={`${character.background.image[0]}`} />
               </div>
               <p className="text-sm text-left hidden sm:block">{character.background.description}</p>
             </div>
@@ -88,7 +88,7 @@ const OneCharacter = (props) => {
                 <div className="sm:flex p-3 items-center">
                   <div className="flex flex-none flex-col items-center justify-items-center mr-5">
                     <p className="mb-2 text-xl font-bold">{specialization.name}</p>
-                    <img className="w-40 h-40 rounded " src={`/images/specializations/${specialization.image[0]}.jpg`} alt={`${specialization.name}`} />
+                    <img className="w-40 h-40 rounded " src={specialization.image[0]} alt={`${specialization.name}`} />
                   </div>
                   <p className="text-sm text-left hidden sm:block">{specialization.description}</p>
                 </div>
@@ -109,7 +109,7 @@ const OneCharacter = (props) => {
                 <div className="sm:flex p-3 items-center">
                   <div className="flex flex-none flex-col items-center justify-items-center mr-5">
                     <p className="mb-2 text-xl font-bold">{talent.name}</p>
-                    <img className="w-40 h-40 rounded " src={`/images/talents/${talent.image[0]}.png`} alt={`${talent.name}`} />
+                    <img className="w-40 h-40 rounded " src={talent.image[0]} alt={`${talent.name}`} />
                   </div>
                   <p className="text-sm text-left hidden sm:block">{talent.description}</p>
                 </div>

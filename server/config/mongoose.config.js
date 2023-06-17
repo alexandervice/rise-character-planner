@@ -1,6 +1,9 @@
 const mongoose = require('mongoose');
+const username = process.env.MONGO_USERNAME
+const password = process.env.MONGO_PASSWORD
+const clusterurl = process.env.MONGO_CLUSTER
 
-mongoose.connect('mongodb://127.0.0.1:27017/riseCharacterPlanner', {
+mongoose.connect(`mongodb+srv://${username}:${password}@${clusterurl}/riseCharacterPlanner`, {
   useNewUrlParser: true,
   useUnifiedTopology: true
 })

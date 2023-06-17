@@ -64,8 +64,8 @@ const Documentation = (props) => {
   const renderRaceData = () => {
     return races.map((item, index)=> (
       <tr key={index}  className='dark:hover:bg-slate-800 hover:bg-sky-200'>
-        <td className='py-2 px-3 border border-slate-800 dark:border-slate-200'>
-          <img src={`/images/races/${item.image[0]}.jpg`} alt={`${item.name}`} />
+        <td className='py-2 px-3 border border-slate-800 dark:border-slate-200 w-48'>
+          <img src={item.image[0]} alt={`${item.name}`} />
         </td>
         <td className='py-2 px-3 border border-slate-800 dark:border-slate-200'>{item.name}</td>
         <td className='py-2 px-3 border border-slate-800 dark:border-slate-200 text-sm'>{item.description}</td>
@@ -76,8 +76,8 @@ const Documentation = (props) => {
   const renderBackgroundData = () => {
     return backgrounds.map((item, index)=> (
       <tr key={index} className='dark:hover:bg-slate-800 hover:bg-sky-200'>
-        <td className='py-2 px-3 border border-slate-800 dark:border-slate-200'>
-          <img className='w-32' src={`/images/backgrounds/${item.image[0]}.png`} alt={`${item.name}`} />
+        <td className='py-2 px-3 border border-slate-800 dark:border-slate-200  w-48'>
+          <img className='w-32' src={item.image[0]} alt={`${item.name}`} />
         </td>
         <td className='py-2 px-3 border border-slate-800 dark:border-slate-200'>{item.name}</td>
         <td className='py-2 px-3 border border-slate-800 dark:border-slate-200'>{item.description}</td>
@@ -88,8 +88,8 @@ const Documentation = (props) => {
   const renderSpecializationData = () => {
     return specializations.map((item, index)=> (
       <tr key={index}  className='dark:hover:bg-slate-800 hover:bg-sky-200'>
-        <td className='py-2 px-3 border border-slate-200'>
-          <img className='w-60' src={`/images/specializations/${item.image[0]}.jpg`} alt={`${item.name}`} />
+        <td className='py-2 px-3 border border-slate-200 w-48'>
+          <img className='' src={item.image[0]} alt={`${item.name}`} />
         </td>
         <td className='py-2 px-3 border border-slate-800 dark:border-slate-200'>{item.name}</td>
         <td className='py-2 px-3 border border-slate-800 dark:border-slate-200'>{item.description}</td>
@@ -100,6 +100,9 @@ const Documentation = (props) => {
   const renderTalentData = () => {
     return talents.map((item, index)=> (
       <tr key={index} className='dark:hover:bg-slate-800 hover:bg-sky-200'>
+        <td className='py-2 px-3 border border-slate-800 dark:border-slate-200 w-48'>
+          <img className='w-32' src={item.image[0]} alt={`${item.name}`} />
+        </td>
         <td className='py-2 px-3 border border-slate-800 dark:border-slate-200'>{item.name}</td>
         <td className='py-2 px-3 border border-slate-800 dark:border-slate-200'>{item.description}</td>
       </tr>
@@ -181,6 +184,7 @@ const Documentation = (props) => {
         {/* Render table1 header */}
         <thead className='text-xl'>
           <tr>
+            <th className='border  border-slate-800 bg-slate-400 py-5 dark:border-slate-200 dark:bg-zinc-700'>Image</th>
             <th className='border  border-slate-800 bg-slate-400 py-5 dark:border-slate-200 dark:bg-zinc-700'>Name</th>
             <th className='border  border-slate-800 bg-slate-400 dark:border-slate-200 dark:bg-zinc-700'>Description</th>
           </tr>
