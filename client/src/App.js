@@ -1,5 +1,5 @@
 import React, {useState, useEffect} from 'react';
-import {BrowserRouter, Routes, Route, Navigate} from 'react-router-dom';
+import {BrowserRouter, Routes, Route, Navigate, useLocation} from 'react-router-dom';
 import Main from "./views/Main";
 import OneCharacter from './components/OneCharacter';
 import CreateCharacter from './components/CreateCharacter';
@@ -13,7 +13,9 @@ import Map from "./components/Map"
 
 function App() {
   const [loggedIn, setLoggedIn] = useState(false);
-  
+  let location = useLocation();
+  console.log(location) // redux
+
   const checkToken = () => {
     if (localStorage.getItem('user')) {
       setLoggedIn(true);
