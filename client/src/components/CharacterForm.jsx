@@ -29,7 +29,7 @@ const CharacterForm= (props) => {
 
   const fetchRaceData = async () => {
     try {
-      const response = await axios.get('http://localhost:8000/api/races/find/all');
+      const response = await axios.get(`${process.env.REACT_APP_API_URL}/api/races/find/all`);
       setAllRaces(response.data.races);
       // console.log(localStorage.getItem("user"))
       // console.log(response.data.races)
@@ -41,7 +41,7 @@ const CharacterForm= (props) => {
 
   const fetchBackgroundData = async () => {
     try {
-      const response = await axios.get('http://localhost:8000/api/backgrounds/find/all'); 
+      const response = await axios.get(`${process.env.REACT_APP_API_URL}/api/backgrounds/find/all`); 
       setAllBackgrounds(response.data.backgrounds);
       // console.log(response.data.backgrounds)
     } catch (error) {
@@ -51,7 +51,7 @@ const CharacterForm= (props) => {
 
   const fetchSpecializationData = async () => {
     try {
-      const response = await axios.get('http://localhost:8000/api/specializations/find/all'); 
+      const response = await axios.get(`${process.env.REACT_APP_API_URL}/api/specializations/find/all`); 
       setAllSpecializations(response.data.specializations);
       // console.log(response.data.specializations)
     } catch (error) {
@@ -61,7 +61,7 @@ const CharacterForm= (props) => {
 
   const fetchTalentData = async () => {
     try {
-      const response = await axios.get('http://localhost:8000/api/talents/find/all'); 
+      const response = await axios.get(`${process.env.REACT_APP_API_URL}/api/talents/find/all`); 
       setAllTalents(response.data.talents);
       // console.log(response.data.talents)
     } catch (error) {

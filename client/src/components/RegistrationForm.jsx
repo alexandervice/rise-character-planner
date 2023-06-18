@@ -22,7 +22,7 @@ const RegistrationForm = (props) => {
 
   const submitHandler = (e) => {
     e.preventDefault();
-    axios.post("http://localhost:8000/api/register", userInfo, {withCredentials: true})
+    axios.post(`${process.env.REACT_APP_API_URL}/api/register`, userInfo, {withCredentials: true})
       .then(res => {
         // console.log(res.data);
         // localStorage.setItem('username', userInfo.userName);

@@ -32,7 +32,7 @@ const CreateCharacter = (props) => {
       formData.append(`talents[${index}]`, JSON.stringify(talent));
     });
 
-    axios.post(`http://localhost:8000/api/users/${user._id}/characters/create`, formData, {withCredentials: true, headers: {'Content-Type': 'multipart/form-data'}})
+    axios.post(`${process.env.REACT_APP_API_URL}/api/users/${user._id}/characters/create`, formData, {withCredentials: true, headers: {'Content-Type': 'multipart/form-data'}})
       .then(res=>{
         console.log(formData)
         console.log(res);

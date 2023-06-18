@@ -13,7 +13,7 @@ const UpdateCharacter = (props) => {
   const navigate = useNavigate();
 
   useEffect(() => {
-    axios.get(`http://localhost:8000/api/users/${user._id}/characters/find/${characterId}`, {withCredentials: true})
+    axios.get(`${process.env.REACT_APP_API_URL}/api/users/${user._id}/characters/find/${characterId}`, {withCredentials: true})
       .then(res => {
         setCharacter(res.data.character)
         // console.log(res.data.character)
@@ -40,7 +40,7 @@ const UpdateCharacter = (props) => {
       formData.append(`talents[${index}]`, JSON.stringify(talent));
     });
 
-    axios.patch(`http://localhost:8000/api/users/${user._id}/characters/update/${characterId}`, formData, {withCredentials: true, headers: {'Content-Type': 'multipart/form-data'}})
+    axios.patch(`${process.env.REACT_APP_API_URL}/api/users/${user._id}/characters/update/${characterId}`, formData, {withCredentials: true, headers: {'Content-Type': 'multipart/form-data'}})
       .then(res => {
         // console.log(characterData)
         console.log(res);

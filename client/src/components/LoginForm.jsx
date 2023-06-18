@@ -21,7 +21,7 @@ const LoginForm = (props) => {
   const submitHandler = (e) => {
     // console.log(userInfo)
     e.preventDefault();
-    axios.post("http://localhost:8000/api/login", userInfo, {withCredentials: true})
+    axios.post(`${process.env.REACT_APP_API_URL}/api/login`, userInfo, {withCredentials: true})
       .then(res => {
         // console.log(res.data.user);
         // localStorage.setItem('username', userInfo.userName);

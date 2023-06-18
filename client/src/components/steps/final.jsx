@@ -12,7 +12,7 @@ const Final = (props) => {
     try {
       setLoading(true);
       setShowChatGPTBackstory(false);
-      const response = await axios.post('http://localhost:8000/chat', message, {withCredentials: true});
+      const response = await axios.post(`${process.env.REACT_APP_API_URL}/chat`, message, {withCredentials: true});
 
       // Handle the response from the backend, such as displaying the result in the UI
       // console.log(response.data.text)

@@ -6,7 +6,7 @@ const DeleteButton = (props) => {
   const [showConfirmation, setShowConfirmation] = useState(false);
 
   const deleteCharacter = e => {
-    axios.delete(`http://localhost:8000/api/users/${user._id}/characters/delete/${characterId}`, {withCredentials: true})
+    axios.delete(`${process.env.REACT_APP_API_URL}/api/users/${user._id}/characters/delete/${characterId}`, {withCredentials: true})
       .then(res=>{
         successCallback();
         console.log("character deleted")

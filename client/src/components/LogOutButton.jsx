@@ -7,7 +7,7 @@ const LogOutButton = (props) => {
   const navigate = useNavigate();
 
   const logOut = e => {
-    axios.post("http://localhost:8000/api/logout")
+    axios.post(`${process.env.REACT_APP_API_URL}/api/logout`)
       .then(res => {
         console.log(res.data);
         localStorage.removeItem("user")
