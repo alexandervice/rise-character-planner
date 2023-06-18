@@ -5,7 +5,9 @@
   "main": "server.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
-    "start": "node server.js"
+    "start": "concurrently \"npm run server\" \"npm run client\"",
+    "server": "node server.js",
+    "client": "cd ../client && npm start"
   },
   "keywords": [],
   "author": "",
@@ -28,5 +30,8 @@
     "sharp": "^0.32.1",
     "uuid": "^9.0.0",
     "validator": "^13.9.0"
+  },
+  "devDependencies": {
+    "concurrently": "^8.2.0"
   }
 }
