@@ -13,7 +13,7 @@ const UpdateCharacter = (props) => {
   const navigate = useNavigate();
 
   useEffect(() => {
-    axios.get(`${process.env.REACT_APP_API_URL}/api/users/${user._id}/characters/find/${characterId}`, {withCredentials: true})
+    axios.get(`${process.env.REACT_APP_API_URL}/api/users/${user._id}/characters/find/${characterId}`, {withCredentials: true, headers: {'Content-Type': 'multipart/form-data'}})
       .then(res => {
         setCharacter(res.data.character)
         // console.log(res.data.character)

@@ -13,8 +13,8 @@ import Map from "./components/Map"
 
 function App() {
   const [loggedIn, setLoggedIn] = useState(false);
-  let location = useLocation();
-  console.log(location) // redux
+  // let location = useLocation();
+  // console.log(location) // redux
 
   const checkToken = () => {
     if (localStorage.getItem('user')) {

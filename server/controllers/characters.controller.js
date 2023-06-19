@@ -125,16 +125,18 @@ module.exports = {
       }
 
       if (req.file) {
-        const params = {
-          Bucket: process.env.AWS_BUCKET_NAME,
-          Key: new URL(character.img).pathname.substring(1)
-        };
-        try {
-          // Awaiting s3.deleteObject promise
-          const data = await s3.deleteObject(params).promise();
-          console.log(data);
-        } catch(err) {
-          console.log(err, err.stack);
+        if(character.img) {
+          const params = {
+            Bucket: process.env.AWS_BUCKET_NAME,
+            Key: new URL(character.img).pathname.substring(1)
+          };
+          try {
+            // Awaiting s3.deleteObject promise
+            const data = await s3.deleteObject(params).promise();
+            console.log(data);
+          } catch(err) {
+            console.log(err, err.stack);
+          }
         }
         character.img = req.file.location; 
       }

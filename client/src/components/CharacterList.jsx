@@ -9,7 +9,7 @@ const CharacterList = (props) => {
 
   const handleImageError = (event) => {
     event.target.onerror = null; // Remove the event listener to avoid potential infinite loop
-    event.target.src = '/images/characters/placeholder.jpg'; // Set the source of the image to the placeholder image
+    event.target.src = 'https://rise-character-planner.s3.us-west-1.amazonaws.com/images/characters/placeholder.jpg'; // Set the source of the image to the placeholder image
   };
 
   return (
@@ -24,7 +24,10 @@ const CharacterList = (props) => {
                 <div className="flex p-3 items-center">
                   <div className="flex flex-none flex-col items-center justify-items-center mr-5">
                     <p className="mb-2 text-3xl font-bold">{character.name}</p>
-                    <img className="w-48 rounded " src={character.img} alt={`${character.img}`} onError={handleImageError}/>
+                    {
+                      character.img ? <img className="w-48 rounded " src={character.img} alt={`${character.img}`} onError={handleImageError}/> :
+                      <img className="w-48 rounded " src={"https://rise-character-planner.s3.us-west-1.amazonaws.com/images/characters/placeholder.jpg"} alt={`${character.img}`} onError={handleImageError}/>
+                    }
                   </div>
                   <p className="text-sm text-left hidden sm:block">{character.backstory}</p>
                 </div>

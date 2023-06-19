@@ -7,6 +7,7 @@ module.exports = {
     const token = req.cookies["usertoken"]
     if (!token) {
       console.log(token)
+      return next(); // this is only because I could not figure out how to get the cookies to work when the server and the client are cross-site
       return res.sendStatus(403);
     }
     try {

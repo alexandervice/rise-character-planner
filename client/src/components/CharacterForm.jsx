@@ -105,7 +105,7 @@ const CharacterForm= (props) => {
               {activeStep === 1 && <Background allBackgrounds={allBackgrounds} characterData={characterData} setCharacterData={setCharacterData} activeStep={activeStep} setActiveStep={setActiveStep}/>}
               {activeStep === 2 && <Specializations allSpecializations={allSpecializations} characterData={characterData} setCharacterData={setCharacterData} activeStep={activeStep} setActiveStep={setActiveStep}/>}
               {activeStep === 3 && <Talents allTalents={allTalents} characterData={characterData} setCharacterData={setCharacterData} activeStep={activeStep} setActiveStep={setActiveStep}/>}
-              {activeStep === 4 && <Final characterData={characterData} setCharacterData={setCharacterData} activeStep={activeStep} setActiveStep={setActiveStep}/>}
+              {activeStep === 4 && <Final characterData={characterData} setCharacterData={setCharacterData} activeStep={activeStep} setActiveStep={setActiveStep} errors={errors}/>}
             </div>
           </div>
           

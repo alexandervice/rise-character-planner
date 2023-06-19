@@ -36,14 +36,14 @@ const Talents = (props) => {
   return (
     <div className='dark:bg-zinc-800 bg-slate-400 rounded py-5'>
       <StepBack activeStep={activeStep} setActiveStep={setActiveStep}/>
-      <StepForward activeStep={activeStep} setActiveStep={setActiveStep} isDataSelected={characterData.talents.length >0 ? true : false }/>
+      <StepForward activeStep={activeStep} setActiveStep={setActiveStep} isDataSelected={characterData.talents.length >1 ? true : false }/>
       <div className="flex  flex-wrap justify-center p-5">
-        <p className='text-xl pb-5'>Please select up to <span className='dark:text-yellow-500 text-blue-700 font-semibold underline'>two</span> of the following Talents. Your Talents are generally the noncombat skills you wish to learn. Please see the documentation page for more details.</p>
+        <p className='text-xl pb-5'>Please select <span className='dark:text-yellow-500 text-blue-700 font-semibold underline'>two</span> of the following Talents. Your Talents are generally the noncombat skills you wish to learn. Please see the documentation page for more details.</p>
         {allTalents.map((talent, index) => {
         return (
           <div key={index} className={`m-4 pt-5 ${lodash.find(characterData.talents, talent) ? 'border-4 border-blue-600 dark:border-yellow-600 dark:bg-zinc-900 bg-slate-300' : ''}`} onClick={() => handleTalentSelection(talent)} onMouseEnter={() => setHovered(talent)} onMouseLeave={() => setHovered(null)}>
-            <img src={talent.image[0]} alt={talent.name} className="cursor-pointer w-40 h-40 dark:invert" />
-            <p className="text-center dark:text-yellow-500 text-slate-800 text-xl my-2">{talent.name}</p>
+            <img src={talent.image[0]} alt={talent.name} className="cursor-pointer w-24 h-24 md:w-40 md:h-40 dark:invert" />
+            <p className="text-center dark:text-yellow-500 text-slate-800 md:text-xl my-2">{talent.name}</p>
             {hovered === talent && (
             <div className="absolute left-1/2 transform -translate-x-1/2 dark:bg-zinc-900 p-4 bg-slate-200 rounded invisible lg:visible">
               <p className="text-center text-sm ">{talent.description}</p>
@@ -53,7 +53,7 @@ const Talents = (props) => {
         )})}
       </div>
       <StepBack activeStep={activeStep} setActiveStep={setActiveStep}/>
-      <StepForward activeStep={activeStep} setActiveStep={setActiveStep} isDataSelected={characterData.talents.length >0 ? true : false }/>
+      <StepForward activeStep={activeStep} setActiveStep={setActiveStep} isDataSelected={characterData.talents.length >1 ? true : false }/>
     </div>
   );
 }
