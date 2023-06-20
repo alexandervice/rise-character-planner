@@ -3,7 +3,7 @@ Brainstorm and save ideas for your next RISE character
 
 Project deployed at: http://rise-character-planner.s3-website-us-west-1.amazonaws.com/
 
-**Frontend:** React on S3 + CloudFront.
+**Frontend:** React on S3 Bucket + CloudFront.
 
 **Backend:** Express Server is dockerized with AWS ECR/ECS on Fargate.
 
