@@ -3,7 +3,7 @@ const Background = require("../models/backgrounds.model")
 module.exports = {
   // READ ALL
   findAllBackgrounds: (req, res) => {
-    Background.find().sort({updatedAt:1})
+    Background.find().sort({id:1})
       .then(allBackgrounds => res.json({backgrounds: allBackgrounds}))
       .catch(err => res.json(err));
   },

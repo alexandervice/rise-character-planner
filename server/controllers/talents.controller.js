@@ -3,7 +3,7 @@ const Talent = require("../models/talents.model")
 module.exports = {
   // READ ALL
   findAllTalents: (req, res) => {
-    Talent.find().sort({updatedAt:1})
+    Talent.find().sort({id:1})
       .then(allTalents => res.json({talents: allTalents}))
       .catch(err => res.json(err));
   },

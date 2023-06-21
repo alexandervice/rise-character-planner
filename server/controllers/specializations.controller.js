@@ -3,7 +3,7 @@ const Specialization = require("../models/specializations.model")
 module.exports = {
   // READ ALL
   findAllSpecializations: (req, res) => {
-    Specialization.find().sort({updatedAt:1})
+    Specialization.find().sort({id:1})
       .then(allSpecializations => res.json({specializations: allSpecializations}))
       .catch(err => res.json(err));
   },

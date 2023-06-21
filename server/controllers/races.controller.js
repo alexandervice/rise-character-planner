@@ -3,7 +3,7 @@ const Race = require("../models/races.model")
 module.exports = {
   // READ ALL
   findAllRaces: (req, res) => {
-    Race.find().sort({updatedAt:1})
+    Race.find().sort({id:1})
       .then(allRaces => res.json({races: allRaces}))
       .catch(err => res.json(err));
   },
