@@ -16,7 +16,15 @@ RISE Character Planner is a MERN (Mongo, Express, React, Node) project that feat
 
 ## Screenshots
 
-![RISE All Characters]([https://github.com/alexandervice/ohana-rideshares-deploy-flask/blob/main/images/ohana-all-rides.png](https://github.com/alexandervice/rise-character-planner/blob/main/wireframe/rise%20website%20screenshots/rise-all-characters.png)
+![Ohana all rides](https://github.com/alexandervice/ohana-rideshares-deploy-flask/blob/main/images/ohana-all-rides.png)
 
-![Ohana all rides](https://github.com/alexandervice/ohana-rideshares-deploy-flask/blob/main/images/ohana-all-rides.png](https://github.com/alexandervice/rise-character-planner/blob/main/wireframe/rise%20website%20screenshots/rise-all-characters.png)
+![Ohana ride details](https://github.com/alexandervice/ohana-rideshares-deploy-flask/blob/main/images/ohana-ride-details.png)
+
+![Ohana login](https://github.com/alexandervice/ohana-rideshares-deploy-flask/blob/main/images/ohana-login.png)
+
+![Ohana ride request](https://github.com/alexandervice/ohana-rideshares-deploy-flask/blob/main/images/ohana-ride-request.png)
+
+![Ohana user details](https://github.com/alexandervice/ohana-rideshares-deploy-flask/blob/main/images/ohana-user-info.png)
+
+![Ohana schema](https://github.com/alexandervice/ohana-rideshares-deploy-flask/blob/main/images/ohana-schema.png)
 
