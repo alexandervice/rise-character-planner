@@ -16,15 +16,24 @@ RISE Character Planner is a MERN (Mongo, Express, React, Node) project that feat
 
 ## Screenshots
 
-![Ohana all rides](https://github.com/alexandervice/ohana-rideshares-deploy-flask/blob/main/images/ohana-all-rides.png)
+![RISE All Characters](https://github.com/alexandervice/rise-character-planner/blob/main/wireframe/rise%20website%20screenshots/rise-all-characters.png)
 
-![Ohana ride details](https://github.com/alexandervice/ohana-rideshares-deploy-flask/blob/main/images/ohana-ride-details.png)
+![RISE Character Creation 1](https://github.com/alexandervice/rise-character-planner/blob/main/wireframe/rise%20website%20screenshots/rise-character-creation1.png)
 
-![Ohana login](https://github.com/alexandervice/ohana-rideshares-deploy-flask/blob/main/images/ohana-login.png)
+![RISE Character Creation 2](https://github.com/alexandervice/rise-character-planner/blob/main/wireframe/rise%20website%20screenshots/rise-character-creation2.png)
 
-![Ohana ride request](https://github.com/alexandervice/ohana-rideshares-deploy-flask/blob/main/images/ohana-ride-request.png)
+![RISE Character Creation 3](https://github.com/alexandervice/rise-character-planner/blob/main/wireframe/rise%20website%20screenshots/rise-character-creation3.png)
 
-![Ohana user details](https://github.com/alexandervice/ohana-rideshares-deploy-flask/blob/main/images/ohana-user-info.png)
+![RISE Character Creation 4](https://github.com/alexandervice/rise-character-planner/blob/main/wireframe/rise%20website%20screenshots/rise-character-creation4.png)
 
-![Ohana schema](https://github.com/alexandervice/ohana-rideshares-deploy-flask/blob/main/images/ohana-schema.png)
+![RISE Character Creation 5](https://github.com/alexandervice/rise-character-planner/blob/main/wireframe/rise%20website%20screenshots/rise-character-creation5.png)
 
+![RISE One Character Dark](https://github.com/alexandervice/rise-character-planner/blob/main/wireframe/rise%20website%20screenshots/rise-one-character-dark.png)
+
+![RISE One Character Light](https://github.com/alexandervice/rise-character-planner/blob/main/wireframe/rise%20website%20screenshots/rise-one-character-light.png)
+
+![RISE Documentation](https://github.com/alexandervice/rise-character-planner/blob/main/wireframe/rise%20website%20screenshots/rise-documentation.png)
+
+![RISE Login](https://github.com/alexandervice/rise-character-planner/blob/main/wireframe/rise%20website%20screenshots/rise-login.png)
+
+![RISE Map](https://github.com/alexandervice/rise-character-planner/blob/main/wireframe/rise%20website%20screenshots/rise-map.png)
