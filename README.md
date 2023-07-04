@@ -2,7 +2,7 @@
 Brainstorm and save ideas for your next RISE character
 
 Project deployed at: http://rise-character-planner.s3-website-us-west-1.amazonaws.com/
-(please contact me if you want to see it running)
+(currently offline to save on costs)
 
 **Frontend:** React on S3 Bucket + CloudFront.
 
